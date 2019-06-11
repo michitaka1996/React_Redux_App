@@ -1,2 +1,10 @@
 @import 'foundation/_reset.scss'; 
 @import 'foundation/_base.scss'; 
+@import 'layout/_header.scss'; 
+
+
+#main{
+    width: 70%;
+    min-height: 600px;
+    margin: 100px auto;
+}

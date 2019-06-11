@@ -64,3 +64,16 @@ body {
 .item {
   text-decoration: none;
   color: black; }
+
+#header {
+  height: 90px;
+  text-align: center; }
+  #header h1 {
+    color: #6600FF;
+    font-size: 28px;
+    margin-top: 10px; }
+
+#main {
+  width: 70%;
+  min-height: 600px;
+  margin: 100px auto; }
