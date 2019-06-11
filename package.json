@@ -4,13 +4,17 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss  scss/layout/_main.scss  css/app.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
-  "author": "",
+  "author": "michitaka <michirug11@i.softbank.jp>",
   "license": "ISC",
   "dependencies": {
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.19.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
