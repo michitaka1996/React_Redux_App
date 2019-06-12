@@ -9,5 +9,13 @@ $(function () {
     //もしメニュー追加されたら、~日付までのメニューを追加させる
 
 
-    $('#menu-date').text(m + '月' + d + '日'+ '(' + wd[w] + ')');
+    $('#menu-date').text(m + '月' + d + '日' + '(' + wd[w] + ')');
+
+
+
+    if ($('#js-modal')) {
+        $('#js-modalHide').on('click', function () {
+            $('#js-modal').hide();
+        });
+    }
 });
