@@ -13,8 +13,9 @@ $(function () {
 
 
 
-    if ($('#js-modal')) {
+    if ($('#js-modal')) { 　//リファクタ必要
         $('#js-modalHide').on('click', function () {
+            console.log('モーダルを非表示にします');
             $('#js-modal').hide();
         });
     }

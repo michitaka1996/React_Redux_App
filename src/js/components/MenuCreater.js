@@ -26,12 +26,12 @@ class MenuCreater extends React.Component{
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
     createHashId() {
+        console.log('一意のIDを作ります');
         return Math.random().toString(36).slice(-16);
     }
     showModal() {
         console.log('モーダルを見せます');
         $('#js-modal').show();
-    //    let modalWidth = 
     }
     firstDegree() {
         console.log('疲労度は' + this.state.degree + 'です');
@@ -44,20 +44,30 @@ class MenuCreater extends React.Component{
     }
     handleKeyUp(e) {
         if (e.keyCode === 13 && e.shiftKey === true) {
+            console.log('モーダルを非表示にします');
+            $('#js-modal').hide();
             console.log('Enter+ShiftKeyが押されたので確定します');
             const val = e.target.value;
             const degree = this.state.degree;
+
             if (val && degree) {
-                console.log('valとdegree両方に値があります');
-                this.props.dispatch(addMenu(this.createHashId(), val, degree));
+                console.log('valとdegree両方を送信します。dispachでaddMenuメソッドを呼びます');
+            
+                this.props.dispatch(addMenu(this.createHashId(), val, degree));  //propsでdispachを受け取っている  connect(自分自身)
+
             } else if (val && !degree) {
-                console.log('valのみ値があります');
+                console.log('valのみの値を送信します。dispachでaddMenuメソッドを呼びます');
                 this.props.dispatch(addMenu(this.createHashId(), val));
             }
+            this.setState({
+                 val: '',
+                 degree: ''
+            });
         }
     }
     render() {
-        console.log('degreeの値', this.state.degree);
+        console.log('valの値render', this.state.val);
+        console.log('degreeの値render', this.state.degree);
         return (
           <div>
             <section className="p-createMenu" id="js-createMenu">
@@ -78,7 +88,7 @@ class MenuCreater extends React.Component{
                 </div>
                 <div className="c-modalBody">
                     <h2>やりたいメニューがあれば追加できます。</h2>
-                    <textarea name="" id="" cols="30" rows="10"  onChange={this.handleChange} onKeyUp={this.handleKeyUp} val={this.state.val}></textarea>
+                    <textarea name="" id="" cols="30" rows="10"  onChange={this.handleChange}  val={this.state.val} onKeyUp={this.handleKeyUp}></textarea>
                 </div>
             </section>
           </div>

@@ -13,7 +13,7 @@ console.log('メニュー', menu);
 const reducer = combineReducers({
     menu
 });
-console.log('reducers読み込みok/');
+console.log('reducers読み込みok');
 
 
 

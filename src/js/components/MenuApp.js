@@ -1,5 +1,6 @@
 import  React from 'react';
 import MenuCreater from './MenuCreater';
+import VisibleMenuList from '../containers/VisibleMenuList';
 
 
 class MenuApp extends React.Component{
@@ -9,7 +10,8 @@ class MenuApp extends React.Component{
     render() {
         return (
             <div>
-               <MenuCreater/>
+                <MenuCreater />,
+                <VisibleMenuList/>
             </div>
        );
     }
