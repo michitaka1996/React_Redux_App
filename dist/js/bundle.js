@@ -28919,10 +28919,21 @@ var _MenuList2 = _interopRequireDefault(_MenuList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//MenuListでコールバックさせるためのメソッド
+//Reduxのcontainerは、だいたい決まった形になる
 
 
-//action
+//state　重要
+//stateっていうのは、reducer名がそのままstateの名前になる  (このコンポーネントのstateの情報ということ)  task.~~で使うことができる
+//つまりreducerで指定しているデータの総称が、stateとして使うことができる
+//reducersで、storeに流すデータを設定した(初期値)が、その中のデータを取り出したい場合は
+//state.reducer名.プロパティ名になるので注意!
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        menus: state.menu.menus
+    };
+};
+
+//MenuListでコールバックさせるためのメソッドをマッピングする
 var mapDispachToProps = function mapDispachToProps(dispatch) {
     return {
         onEnterUpdateMenu: function onEnterUpdateMenu(id, text) {
@@ -28932,7 +28943,7 @@ var mapDispachToProps = function mapDispachToProps(dispatch) {
 };
 
 //
-exports.default = (0, _reactRedux.connect)(mapDispachToProps)(_MenuList2.default); //menuListに渡すもの
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispachToProps)(_MenuList2.default); //menuListに渡すもの
 
 /***/ }),
 /* 70 */
@@ -28988,17 +28999,13 @@ var MenuList = function (_React$Component) {
                 menus = _props.menus,
                 _onEnterUpdateMenu = _props.onEnterUpdateMenu;
 
-            console.log('この時点でのprops', this.props);
-
-            // {onEnterUpdateMenu: ƒ, dispatch: ƒ}
-            // dispatch: ƒ dispatch(action)
-            // onEnterUpdateMenu: ƒ onEnterUpdateMenu(id, text)
-            // __proto__: Object
+            console.log('この時点でのprops', this.props); //ここでcontainerからpropが渡っていて、指定できているか確認すること
+            console.log('menusとは', this.props.menus);
 
             var tasks = [];
 
             var _loop = function _loop(i) {
-                tasks.push(_react2.default.createElement(_Menu2.default, _extends({ key: menus[i].id }, menus[i].id, {
+                tasks.push(_react2.default.createElement(_Menu2.default, _extends({ key: menus[i].id }, menus[i], {
                     onEnterUpdateMenu: function onEnterUpdateMenu(text) {
                         return _onEnterUpdateMenu(menus[i].id, text);
                     }
@@ -29008,6 +29015,7 @@ var MenuList = function (_React$Component) {
             for (var i in menus) {
                 _loop(i);
             }
+            console.log('tasks', tasks);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -29144,7 +29152,7 @@ var Menu = function (_React$Component) {
         { className: 'p-task' },
         _react2.default.createElement(
           'div',
-          { className: 'c-menu__check', onClick: onClickToggleDone },
+          { className: 'c-menu__check' },
           _react2.default.createElement('i', { className: 'far fa-3x fa-check-circle' })
         ),
         _react2.default.createElement(
@@ -29164,7 +29172,7 @@ var Menu = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'c-menu__delete', onClick: onClickRemove },
+          { className: 'c-menu__delete' },
           _react2.default.createElement('i', { className: 'far fa-2x fa-times-circle' })
         )
       );

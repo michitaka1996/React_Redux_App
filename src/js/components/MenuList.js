@@ -15,19 +15,16 @@ class MenuList extends React.Component{
     }
     render() {
         const { menus, onEnterUpdateMenu } = this.props;
-        console.log('この時点でのprops' ,this.props);
-
-    // {onEnterUpdateMenu: ƒ, dispatch: ƒ}
-    // dispatch: ƒ dispatch(action)
-    // onEnterUpdateMenu: ƒ onEnterUpdateMenu(id, text)
-    // __proto__: Object
-
+        console.log('この時点でのprops', this.props);  //ここでcontainerからpropが渡っていて、指定できているか確認すること
+        console.log('menusとは', this.props.menus);
+        
         let tasks = [];
         for (let i in menus) {
-            tasks.push(<Menu key={menus[i].id} {...menus[i].id}
+            tasks.push(<Menu key={menus[i].id} {...menus[i]}
                 onEnterUpdateMenu={(text) => onEnterUpdateMenu(menus[i].id, text)}
             />);
         }
+        console.log('tasks', tasks);
         return (
             <div>
                 {tasks}

@@ -63,7 +63,7 @@ class Menu extends React.Component{
     
     return (
          <section className="p-task">
-                <div className="c-menu__check" onClick={onClickToggleDone}>
+                <div className="c-menu__check">
                     <i className="far fa-3x fa-check-circle"></i>
                 </div>
                 <div className="c-menu__contents">
@@ -73,7 +73,7 @@ class Menu extends React.Component{
                         <i className="fal fa-2x fa-edit"></i>
                     </div>
                 </div>
-                <div className="c-menu__delete" onClick={onClickRemove}>
+                <div className="c-menu__delete">
                     <i className="far fa-2x fa-times-circle"></i>
                 </div>
          </section>
