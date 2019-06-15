@@ -6,18 +6,20 @@
 
 
 //渡す引数、メニューのid、メニュー内容(text)、疲労度(degree)
-export function addMenu(id, text, degree) {
-    console.log('dispachから渡されたactionsです。typeをもとにreducersへ引き渡します。');
+export function addMenu(id, text, degree, date) {
+    console.log('actions: dispach()を指定することでcomponentから渡された値の入っているactionsです。typeを識別してreducersへその値を引き渡します。');
     return {
         type: "ADD",
         id: id,
         text: text,
-        degree: degree
+        degree: degree,
+        date: date
     };
 }
 
+
 export function updateMenu(id, text) {
-    console.log('updateのactionsについて');
+    console.log('actions: updateのactionsについて');
     return {
         type: "UPDATE",
         id: id,

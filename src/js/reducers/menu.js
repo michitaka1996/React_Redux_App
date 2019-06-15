@@ -1,13 +1,10 @@
 import _ from 'lodash';
 
 
-//これがreducers自身
- //storeに渡すもの
+//reducers
+ //reducerはreturnで返却するstateと
 
-
-//reducerはreturnで返却するstateと
-
-
+console.log('reducers(menu): このreducer名が以降でstateの名前になります'); //最初だけ読みこまれる
 
 //初期値のid
 const initialState = {
@@ -17,7 +14,7 @@ const initialState = {
         isDone: false
     }]
 };
-console.log('初期値', initialState);
+console.log('reducers: 初期値', initialState); //最初だけ読みとこまれる
 
 
 //componentsから、dispachでactionsへメソッドを受け渡す
@@ -27,7 +24,8 @@ console.log('初期値', initialState);
 // reducerはreturnで返却するstateと元のstateの差分があれば、再描画される
 // reducer名がそのままstateの名前になる  (このコンポーネントのstateの情報ということ)
 export default function menu(state = initialState, action) {
-    console.log('reducersです');
+    console.log('reducers: reducersです');
+    console.log('reducers: reducersのreducer名 ', menu);
     switch (action.type) {
         case 'ADD':
             return {
@@ -36,7 +34,8 @@ export default function menu(state = initialState, action) {
                     {
                         id: action.id,
                         isDone: false,
-                        text: action.text
+                        text: action.text,
+                        date: action.date
                     }
                 ]
             };

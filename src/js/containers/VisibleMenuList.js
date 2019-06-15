@@ -4,6 +4,7 @@ import MenuList from '../components/MenuList';
 
 //Reduxのcontainerは、だいたい決まった形になる
 
+console.log('containers: 親component(MenuList)へdispachやstateをマッピングします');
 
 
 //state　重要

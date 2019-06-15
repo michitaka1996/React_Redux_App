@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { addMenu } from '../actions/index'
 import PropTypes from 'prop-types';
 
-//メニューを作るためのcomponent
+//component(MenuCreater)
   //Menuを作るためのメソッドをdispachするのでconnectを使う
 
 
@@ -26,15 +26,15 @@ class MenuCreater extends React.Component{
         this.handleKeyUp = this.handleKeyUp.bind(this);
     }
     createHashId() {
-        console.log('一意のIDを作ります');
+        console.log('component(MenuCreater): 一意のIDを作ります');
         return Math.random().toString(36).slice(-16);
     }
     showModal() {
-        console.log('モーダルを見せます');
+        console.log('component(MenuCreater): モーダルを見せます');
         $('#js-modal').show();
     }
     firstDegree() {
-        console.log('疲労度は' + this.state.degree + 'です');
+        console.log('component(MenuCreater): 疲労度は' + this.state.degree + 'です');
         this.setState({ degree: 'first' });
     }
     handleChange(e) {
@@ -44,30 +44,60 @@ class MenuCreater extends React.Component{
     }
     handleKeyUp(e) {
         if (e.keyCode === 13 && e.shiftKey === true) {
-            console.log('モーダルを非表示にします');
+            console.log('component(MenuCreater): モーダルを非表示にします');
             $('#js-modal').hide();
-            console.log('Enter+ShiftKeyが押されたので確定します');
+            console.log('component(MenuCreater): Enter+ShiftKeyが押されたので確定します');
             const val = e.target.value;
             const degree = this.state.degree;
+            let now = new Date();
+            let y = now.getFullYear();
+            let m = now.getMonth() + 1;
+            let d = now.getDate();
+            let w = now.getDay();
+            let wd = ['日', '月', '火', '水', '木', '金', '土'];
+
+            let date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
+            console.log('component(MenuCreater): 今日のdate', date);
+
+            // const createDate = () => {
+            //     let now = new Date();
+            //     let y = now.getFullYear();
+            //     let m = now.getMonth() + 1;
+            //     let d = now.getDate();
+            //     let w = now.getDay();
+            //     let wd = ['日', '月', '火', '水', '木', '金', '土'];
+            //     let date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
+            //     // $('#date').text(y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')');
+            //     //もしメニュー追加されたら、~日付までのメニューを追加させる
+            //     // $('#menu-date').text(m + '月' + d + '日' + '(' + wd[w] + ')');
+            //     console.log('今の日時', date);
+            //     return date
+            // };
+            // console.log('日時', createDate);
 
             if (val && degree) {
-                console.log('valとdegree両方を送信します。dispachでaddMenuメソッドを呼びます');
-            
-                this.props.dispatch(addMenu(this.createHashId(), val, degree));  //propsでdispachを受け取っている  connect(自分自身)
+                console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
+                console.log('component(MenuCreater):actionに渡す値(val)',val);
+                console.log('component(MenuCreater):actionに渡す値(degree)',degree);
+                console.log('component(MenuCreater):actionに渡す値(date)',date);
+                this.props.dispatch(addMenu(this.createHashId(), val, degree, date));  //propsでdispachを受け取っている  connect(自分自身)
 
             } else if (val && !degree) {
-                console.log('valのみの値を送信します。dispachでaddMenuメソッドを呼びます');
-                this.props.dispatch(addMenu(this.createHashId(), val));
+                console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
+                console.log('component(MenuCreater):actionに渡す値(val)',val);
+                console.log('component(MenuCreater):actionに渡す値(date)',date);
+                this.props.dispatch(addMenu(this.createHashId(), val, date));
             }
             this.setState({
                  val: '',
-                 degree: ''
+                 degree: '',
+                 date: ''
             });
         }
     }
     render() {
-        console.log('valの値render', this.state.val);
-        console.log('degreeの値render', this.state.degree);
+        console.log('component(MenuCreater): valの値render', this.state.val);
+        console.log('component(MenuCreater): degreeの値render', this.state.degree);
         return (
           <div>
             <section className="p-createMenu" id="js-createMenu">

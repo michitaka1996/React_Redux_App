@@ -6,8 +6,11 @@ import MenuApp from './components/MenuApp'
 import rootReducer from './reducers'
 
 
-//すべてのReact-reduxを統括をするコンポーネント 
+
+//これはstoreです。
+ //すべてのReact-reduxを統括をするコンポーネント 
  //ここでstoreを作成する
+console.log('app.js: storeへ流し込みます');
 
 let store = createStore(rootReducer);
 

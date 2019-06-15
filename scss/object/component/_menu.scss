@@ -1,30 +1,38 @@
-.c-menu__check{
+.c-menu__check {
     margin-right: 5%;
     margin-top: auto;
     margin-bottom: auto;
 }
+
 .c-menu__title {
     font-weight: bold;
     font-size: $space-xl;
     margin-bottom: 10px;
 
 }
-.c-menu__date{
+
+.c-menu__date {
     display: inline;
 }
-.c-menu__contents{
+
+.c-menu__contents {
     min-height: 80px;
 }
-.c-menu__body{
+
+.c-menu__body {
     font-size: $font-size-s;
+    min-width: 562px;
+    text-align: center;
 }
-.c-menu__delete{
+
+.c-menu__delete {
     width: 40px;
     height: 40px;
     margin-left: 2%;
     margin-top: auto;
     margin-bottom: auto;
 }
-.c-menu__edit{
+
+.c-menu__edit {
     text-align: right;
 }

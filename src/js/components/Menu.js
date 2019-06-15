@@ -4,7 +4,7 @@ import ClassNames from 'classnames';
 
 
 
-
+//子コンポーネント
 //一個一個のメニュー管理のためのコンポーネント
   //Menuを表示させる
   //doneさせるためにクラス名を動的に変更するのでclassNameを使用する
@@ -26,7 +26,7 @@ class Menu extends React.Component{
       this.handleClickEdit = this.handleClickEdit.bind(this);
     }
   handleChangeText(e) {
-   console.log('編集完了しました！stateを更新します');
+   console.log('子component(Menu)集完了しました！stateを更新します');
     this.setState({
       text: e.target.value
     });
@@ -37,18 +37,18 @@ class Menu extends React.Component{
       this.setState({
         editMode: true
       });
-      console.log('アップデートします。アップデートするためにpropsを実行します。');
+      console.log('子component(Menu) ：アップデートします。アップデートするためにpropsを実行します。');
       this.props.onEnterUpdateMenu(e.currentTarget.value);
     }
   }
   handleClickEdit() {
-    console.log('編集します');
+    console.log('子component(Menu): 編集します');
     this.setState({
       editMode: true
     });
   }
   render() {
-      console.log('textとは', this.state.text);
+      console.log('子component(Menu): textとは', this.state.text);
       //クラスも動的に変更させること
     　　//クラスがこのままだとモック通り
     　　　//どこのスタイルを変えて行きたいか、->
@@ -67,7 +67,7 @@ class Menu extends React.Component{
                     <i className="far fa-3x fa-check-circle"></i>
                 </div>
                 <div className="c-menu__contents">
-                    <h3 className="c-menu__title">ここを動的にかえる</h3> 
+                    <h3 className="c-menu__title">ここを動的にかえる &emsp; <div className="c-menu__date" id="menu-date">{this.props.date}</div></h3> 
                     {textarea}
                     <div className="c-menu__edit">
                         <i className="fal fa-2x fa-edit"></i>
@@ -85,6 +85,7 @@ Menu.propTypes = {
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
+  // date: PropTypes.string.isRequired,
   onEnterUpdateMenu: PropTypes.func.isRequired
 };
 

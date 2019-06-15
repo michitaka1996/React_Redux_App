@@ -134,7 +134,9 @@ body {
   min-height: 80px; }
 
 .c-menu__body {
-  font-size: 14px; }
+  font-size: 14px;
+  min-width: 562px;
+  text-align: center; }
 
 .c-menu__delete {
   width: 40px;

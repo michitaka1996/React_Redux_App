@@ -1579,18 +1579,19 @@ exports.updateMenu = updateMenu;
 
 
 //渡す引数、メニューのid、メニュー内容(text)、疲労度(degree)
-function addMenu(id, text, degree) {
-    console.log('dispachから渡されたactionsです。typeをもとにreducersへ引き渡します。');
+function addMenu(id, text, degree, date) {
+    console.log('actions: dispach()を指定することでcomponentから渡された値の入っているactionsです。typeを識別してreducersへその値を引き渡します。');
     return {
         type: "ADD",
         id: id,
         text: text,
-        degree: degree
+        degree: degree,
+        date: date
     };
 }
 
 function updateMenu(id, text) {
-    console.log('updateのactionsについて');
+    console.log('actions: updateのactionsについて');
     return {
         type: "UPDATE",
         id: id,
@@ -1627,8 +1628,10 @@ var _reducers2 = _interopRequireDefault(_reducers);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//これはstoreです。
 //すべてのReact-reduxを統括をするコンポーネント 
 //ここでstoreを作成する
+console.log('app.js: storeへ流し込みます');
 
 var store = (0, _redux.createStore)(_reducers2.default);
 
@@ -28657,6 +28660,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+console.log('componentを統括するMenuApp');
+
 var MenuApp = function (_React$Component) {
     _inherits(MenuApp, _React$Component);
 
@@ -28717,7 +28722,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//メニューを作るためのcomponent
+//component(MenuCreater)
 //Menuを作るためのメソッドをdispachするのでconnectを使う
 
 
@@ -28749,19 +28754,19 @@ var MenuCreater = function (_React$Component) {
     _createClass(MenuCreater, [{
         key: 'createHashId',
         value: function createHashId() {
-            console.log('一意のIDを作ります');
+            console.log('component(MenuCreater): 一意のIDを作ります');
             return Math.random().toString(36).slice(-16);
         }
     }, {
         key: 'showModal',
         value: function showModal() {
-            console.log('モーダルを見せます');
+            console.log('component(MenuCreater): モーダルを見せます');
             $('#js-modal').show();
         }
     }, {
         key: 'firstDegree',
         value: function firstDegree() {
-            console.log('疲労度は' + this.state.degree + 'です');
+            console.log('component(MenuCreater): 疲労度は' + this.state.degree + 'です');
             this.setState({ degree: 'first' });
         }
     }, {
@@ -28775,31 +28780,61 @@ var MenuCreater = function (_React$Component) {
         key: 'handleKeyUp',
         value: function handleKeyUp(e) {
             if (e.keyCode === 13 && e.shiftKey === true) {
-                console.log('モーダルを非表示にします');
+                console.log('component(MenuCreater): モーダルを非表示にします');
                 $('#js-modal').hide();
-                console.log('Enter+ShiftKeyが押されたので確定します');
+                console.log('component(MenuCreater): Enter+ShiftKeyが押されたので確定します');
                 var val = e.target.value;
                 var degree = this.state.degree;
+                var now = new Date();
+                var y = now.getFullYear();
+                var m = now.getMonth() + 1;
+                var d = now.getDate();
+                var w = now.getDay();
+                var wd = ['日', '月', '火', '水', '木', '金', '土'];
+
+                var date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
+                console.log('component(MenuCreater): 今日のdate', date);
+
+                // const createDate = () => {
+                //     let now = new Date();
+                //     let y = now.getFullYear();
+                //     let m = now.getMonth() + 1;
+                //     let d = now.getDate();
+                //     let w = now.getDay();
+                //     let wd = ['日', '月', '火', '水', '木', '金', '土'];
+                //     let date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
+                //     // $('#date').text(y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')');
+                //     //もしメニュー追加されたら、~日付までのメニューを追加させる
+                //     // $('#menu-date').text(m + '月' + d + '日' + '(' + wd[w] + ')');
+                //     console.log('今の日時', date);
+                //     return date
+                // };
+                // console.log('日時', createDate);
 
                 if (val && degree) {
-                    console.log('valとdegree両方を送信します。dispachでaddMenuメソッドを呼びます');
-
-                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree)); //propsでdispachを受け取っている  connect(自分自身)
+                    console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
+                    console.log('component(MenuCreater):actionに渡す値(val)', val);
+                    console.log('component(MenuCreater):actionに渡す値(degree)', degree);
+                    console.log('component(MenuCreater):actionに渡す値(date)', date);
+                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date)); //propsでdispachを受け取っている  connect(自分自身)
                 } else if (val && !degree) {
-                    console.log('valのみの値を送信します。dispachでaddMenuメソッドを呼びます');
-                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val));
+                    console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
+                    console.log('component(MenuCreater):actionに渡す値(val)', val);
+                    console.log('component(MenuCreater):actionに渡す値(date)', date);
+                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, date));
                 }
                 this.setState({
                     val: '',
-                    degree: ''
+                    degree: '',
+                    date: ''
                 });
             }
         }
     }, {
         key: 'render',
         value: function render() {
-            console.log('valの値render', this.state.val);
-            console.log('degreeの値render', this.state.degree);
+            console.log('component(MenuCreater): valの値render', this.state.val);
+            console.log('component(MenuCreater): degreeの値render', this.state.degree);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -28921,6 +28956,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //Reduxのcontainerは、だいたい決まった形になる
 
+console.log('containers: 親component(MenuList)へdispachやstateをマッピングします');
 
 //state　重要
 //stateっていうのは、reducer名がそのままstateの名前になる  (このコンポーネントのstateの情報ということ)  task.~~で使うことができる
@@ -28980,6 +29016,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//親コンポーネント
 //各Menuの統括する　Menuの親コンポーネント
 //この親コンポーネントに、containerからdispach()やstateを渡すことになる
 //この親コンポーネントは、子コンポーネントへpropsを受け渡すことになる
@@ -28999,12 +29036,14 @@ var MenuList = function (_React$Component) {
                 menus = _props.menus,
                 _onEnterUpdateMenu = _props.onEnterUpdateMenu;
 
-            console.log('この時点でのprops', this.props); //ここでcontainerからpropが渡っていて、指定できているか確認すること
-            console.log('menusとは', this.props.menus);
+            console.log('親component: この時点でのprops', this.props); //ここでcontainerからpropが渡っていて、指定できているか確認すること
+            console.log('親component: menusとは', this.props.menus);
 
             var tasks = [];
 
             var _loop = function _loop(i) {
+                console.log('親component:menus[i]', menus[i]); //この２つの違いに注意
+                console.log('親component:menus', menus);
                 tasks.push(_react2.default.createElement(_Menu2.default, _extends({ key: menus[i].id }, menus[i], {
                     onEnterUpdateMenu: function onEnterUpdateMenu(text) {
                         return _onEnterUpdateMenu(menus[i].id, text);
@@ -29015,7 +29054,7 @@ var MenuList = function (_React$Component) {
             for (var i in menus) {
                 _loop(i);
             }
-            console.log('tasks', tasks);
+            console.log('親component: tasks(配列にpropsをpushしたやつ)', tasks);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -29035,6 +29074,7 @@ MenuList.propTypes = {
         id: _propTypes2.default.string.isRequired,
         isDone: _propTypes2.default.bool.isRequired,
         text: _propTypes2.default.string.isRequired
+        // date: PropTypes.string.isRequired
     }).isRequired).isRequired,
     onEnterUpdateMenu: _propTypes2.default.func.isRequired
 };
@@ -29074,6 +29114,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//子コンポーネント
 //一個一個のメニュー管理のためのコンポーネント
 //Menuを表示させる
 //doneさせるためにクラス名を動的に変更するのでclassNameを使用する
@@ -29104,7 +29145,7 @@ var Menu = function (_React$Component) {
   _createClass(Menu, [{
     key: 'handleChangeText',
     value: function handleChangeText(e) {
-      console.log('編集完了しました！stateを更新します');
+      console.log('子component(Menu)集完了しました！stateを更新します');
       this.setState({
         text: e.target.value
       });
@@ -29117,14 +29158,14 @@ var Menu = function (_React$Component) {
         this.setState({
           editMode: true
         });
-        console.log('アップデートします。アップデートするためにpropsを実行します。');
+        console.log('子component(Menu) ：アップデートします。アップデートするためにpropsを実行します。');
         this.props.onEnterUpdateMenu(e.currentTarget.value);
       }
     }
   }, {
     key: 'handleClickEdit',
     value: function handleClickEdit() {
-      console.log('編集します');
+      console.log('子component(Menu): 編集します');
       this.setState({
         editMode: true
       });
@@ -29132,7 +29173,7 @@ var Menu = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log('textとは', this.state.text);
+      console.log('子component(Menu): textとは', this.state.text);
       //クラスも動的に変更させること
       //クラスがこのままだとモック通り
       //どこのスタイルを変えて行きたいか、->
@@ -29161,7 +29202,12 @@ var Menu = function (_React$Component) {
           _react2.default.createElement(
             'h3',
             { className: 'c-menu__title' },
-            '\u3053\u3053\u3092\u52D5\u7684\u306B\u304B\u3048\u308B'
+            '\u3053\u3053\u3092\u52D5\u7684\u306B\u304B\u3048\u308B \u2003 ',
+            _react2.default.createElement(
+              'div',
+              { className: 'c-menu__date', id: 'menu-date' },
+              this.props.date
+            )
           ),
           textarea,
           _react2.default.createElement(
@@ -29186,6 +29232,7 @@ Menu.propTypes = {
   id: _propTypes2.default.string.isRequired,
   text: _propTypes2.default.string.isRequired,
   isDone: _propTypes2.default.bool.isRequired,
+  // date: PropTypes.string.isRequired,
   onEnterUpdateMenu: _propTypes2.default.func.isRequired
 };
 
@@ -29277,11 +29324,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 
 console.log('reducersを読み込みます');
-console.log('メニュー', _menu2.default);
+console.log('reducers: メニュー', _menu2.default);
 var reducer = (0, _redux.combineReducers)({
   menu: _menu2.default
 });
-console.log('reducers読み込みok');
 
 exports.default = reducer;
 
@@ -29305,12 +29351,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-//これがreducers自身
-//storeに渡すもの
-
-
+//reducers
 //reducerはreturnで返却するstateと
 
+console.log('reducers(menu): このreducer名が以降でstateの名前になります'); //最初だけ読みこまれる
 
 //初期値のid
 var initialState = {
@@ -29320,7 +29364,8 @@ var initialState = {
         isDone: false
     }]
 };
-console.log('初期値', initialState);
+console.log('reducers: 初期値', initialState); //最初だけ読みとこまれる
+
 
 //componentsから、dispachでactionsへメソッドを受け渡す
 //常にreducersではactionsが入ってくること
@@ -29332,14 +29377,16 @@ function menu() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
     var action = arguments[1];
 
-    console.log('reducersです');
+    console.log('reducers: reducersです');
+    console.log('reducers: reducersのreducer名 ', menu);
     switch (action.type) {
         case 'ADD':
             return {
                 menus: [].concat(_toConsumableArray(state.menus), [{
                     id: action.id,
                     isDone: false,
-                    text: action.text
+                    text: action.text,
+                    date: action.date
                 }])
             };
         case 'UPDATE':
