@@ -85,7 +85,7 @@ body {
   box-sizing: border-box;
   padding: 10px;
   display: flex;
-  margin-bottom: 40px; }
+  margin-bottom: 70px; }
 
 .p-modalWindow {
   display: none;
@@ -120,12 +120,13 @@ body {
 .c-menu__check {
   margin-right: 5%;
   margin-top: auto;
-  margin-bottom: auto; }
+  margin-bottom: auto;
+  margin-left: auto; }
 
 .c-menu__title {
   font-weight: bold;
   font-size: 20px;
-  margin-bottom: 10px; }
+  margin-bottom: 20px; }
 
 .c-menu__date {
   display: inline; }
@@ -134,14 +135,14 @@ body {
   min-height: 80px; }
 
 .c-menu__body {
-  font-size: 14px;
-  min-width: 562px;
-  text-align: center; }
+  font-size: 18px;
+  width: 430px; }
 
 .c-menu__delete {
   width: 40px;
   height: 40px;
   margin-left: 2%;
+  margin-right: auto;
   margin-top: auto;
   margin-bottom: auto; }
 

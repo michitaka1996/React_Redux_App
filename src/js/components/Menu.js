@@ -24,6 +24,12 @@ class Menu extends React.Component{
       this.handleChangeText = this.handleChangeText.bind(this);
       this.handleKeyUpClose = this.handleKeyUpClose.bind(this);
       this.handleClickEdit = this.handleClickEdit.bind(this);
+
+      //これらはコールバックで、containerで渡すのでthisのbindはいらない
+        // this.onClickToggleDone = this.onClickToggleDone.bind(this);
+        // this.onClickRemove = this.onClickRemove.bind(this);
+        // this.onClickEdit = this.onClickEdit.bind(this);
+
     }
   handleChangeText(e) {
    console.log('子component(Menu)集完了しました！stateを更新します');
@@ -47,6 +53,20 @@ class Menu extends React.Component{
       editMode: true
     });
   }
+  //本来ならここでonClickなどのメソッドはここからコールバックさせるが、Reduxでは
+  　//propsをdispatchしてactionsに引き渡すことができる。
+  　//なお、dispachでのメソッドは、containerの中で整理すること(connnectで各メソッドのマッピングを行いコンポーネントへ渡している)
+  // onClickToggleDone() { 
+  //   console.log('練習メニューdoneです！');
+  // }
+  // onClickRemove() {
+  //   console.log('この練習メニューを削除します');
+  // }
+  // onClickEdit() {
+  //   console.log('この練習メニューを編集します');
+  // }
+
+
   render() {
       console.log('子component(Menu): textとは', this.state.text);
       //クラスも動的に変更させること
@@ -59,7 +79,11 @@ class Menu extends React.Component{
     const textarea = (this.state.editMode) ?
       <textarea className="editText" value={this.state.text} type="text"
                 onChange={this.handleChangeText} onKeyUp={this.handleKeyUpClose}/> :
-      <div className="c-menu__body" onClick={this.handleClickEdit}>{this.state.text}</div>;
+      <div className="c-menu__body" onClick={this.handleClickEdit}>
+        <p>
+          {this.state.text}
+        </p>
+      </div>;
     
     return (
          <section className="p-task">
@@ -69,11 +93,11 @@ class Menu extends React.Component{
                 <div className="c-menu__contents">
                     <h3 className="c-menu__title">ここを動的にかえる &emsp; <div className="c-menu__date" id="menu-date">{this.props.date}</div></h3> 
                     {textarea}
-                    <div className="c-menu__edit">
+                    <div className="c-menu__edit" >
                         <i className="fal fa-2x fa-edit"></i>
                     </div>
                 </div>
-                <div className="c-menu__delete">
+                <div className="c-menu__delete" onClick={onClickRemove}>
                     <i className="far fa-2x fa-times-circle"></i>
                 </div>
          </section>
@@ -81,12 +105,15 @@ class Menu extends React.Component{
     }
 }
 
+//このコンポーネント内で使う、各プロパティやメソッドは、ここpropTypesで制限する必要がある
+  //MenuはMenuList、containerからの受け渡しがあるので、Menuのstateで使うthis.propsのtextだけでなく、
+  //id、idDone　も必要である
 Menu.propTypes = {
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
-  // date: PropTypes.string.isRequired,
-  onEnterUpdateMenu: PropTypes.func.isRequired
+  onEnterUpdateMenu: PropTypes.func.isRequired,
+  onClickRemove: PropTypes.func.isRequired
 };
 
 export default Menu;

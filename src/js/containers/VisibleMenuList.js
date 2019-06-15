@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import {  updateMenu } from '../actions'
+import {  updateMenu, deleteMenu } from '../actions'
 import MenuList from '../components/MenuList';
 
 //Reduxのcontainerは、だいたい決まった形になる
@@ -28,6 +28,9 @@ const mapDispachToProps = dispatch => {
     return {
         onEnterUpdateMenu: (id, text) => {
             dispatch(updateMenu(id, text));
+        },
+        onClickRemove: id => {
+            dispatch(deleteMenu(id));
         }
     }
 };

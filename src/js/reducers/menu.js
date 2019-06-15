@@ -11,7 +11,8 @@ const initialState = {
     menus: [{
         id: 'XXX',
         text: 'gegeqwgregqgegrergqs',
-        isDone: false
+        isDone: false,
+        date: 'YYY'
     }]
 };
 console.log('reducers: 初期値', initialState); //最初だけ読みとこまれる
@@ -39,6 +40,10 @@ export default function menu(state = initialState, action) {
                     }
                 ]
             };
+        case 'DELETE':
+            return Object.assign({}, state, {
+                menus: _.reject(state.menus, {'id': action.id})
+            })
         case 'UPDATE':
             return Object.assign({}, state, {
                 menus: state.map((menu) => {

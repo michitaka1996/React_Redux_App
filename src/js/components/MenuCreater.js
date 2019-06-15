@@ -32,12 +32,15 @@ class MenuCreater extends React.Component{
     showModal() {
         console.log('component(MenuCreater): モーダルを見せます');
         $('#js-modal').show();
+        console.log('component(MenuCreater)この時MenuCreaterにある値(val): ', this.state.val);
+        console.log('component(MenuCreater)この時MenuCreaterにある値(degree): ', this.state.degree);
     }
     firstDegree() {
         console.log('component(MenuCreater): 疲労度は' + this.state.degree + 'です');
         this.setState({ degree: 'first' });
     }
     handleChange(e) {
+        console.log('component(MenuCreater): handleChangeが呼ばれました');
         this.setState({
             val: e.target.value
         });
@@ -82,17 +85,29 @@ class MenuCreater extends React.Component{
                 console.log('component(MenuCreater):actionに渡す値(date)',date);
                 this.props.dispatch(addMenu(this.createHashId(), val, degree, date));  //propsでdispachを受け取っている  connect(自分自身)
 
-            } else if (val && !degree) {
+            } else if (val && !degree ) {
                 console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
                 console.log('component(MenuCreater):actionに渡す値(val)',val);
-                console.log('component(MenuCreater):actionに渡す値(date)',date);
-                this.props.dispatch(addMenu(this.createHashId(), val, date));
+                console.log('component(MenuCreater):actionに渡す値(date)', date); //ここでのdateは読み込まれている
+                console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
+                this.props.dispatch(addMenu(this.createHashId(), val, degree, date));
+                //注意！！  dispachで渡すメソッドの引数の順番は、actionsでのメソッドの引数の値と同じ順番にすること logのプログラムも読み込んでしまうのでそこは気をつけていくこと
+                // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
+            //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
+            //     date: "2019年6月15日(土)"
+            //     degree: ""
+            //     id: "0.fl5kq7vusx"
+            //     text: "ggrgew↵"
+            //     type: "ADD"
+            //     __proto__: Object
             }
-            this.setState({
+            console.log('component(MenuCreater):stateをリセットします');
+            // delete this.state.val;
+              this.setState({
                  val: '',
                  degree: '',
-                 date: ''
-            });
+              });
+            console.log('component(MenuCreater):リセットしたあとのstateの値', this.state.val); //renderが呼ばれるは処理が終わったあとの値なのでこの時点では値が存在する
         }
     }
     render() {

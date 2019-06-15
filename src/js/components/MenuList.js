@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 
 
 //親コンポーネント
-//各Menuの統括する　Menuの親コンポーネント
-//この親コンポーネントに、containerからdispach()やstateを渡すことになる
-//この親コンポーネントは、子コンポーネントへpropsを受け渡すことになる
+    //各Menuの統括する　Menuの親コンポーネント
+      //各menuに対してなにかアクションを起こす時に、その操作を統括する
+      //子要素に、propsとしてメソッドを渡している そのメソッドはcontanerの方で調整している(dispach)
+    //この親コンポーネントに、containerからdispach()やstateを渡すことになる
+    //この親コンポーネントは、子コンポーネントへpropsを受け渡すことになる
 class MenuList extends React.Component{
     constructor(props) {
         super(props);
@@ -24,6 +26,7 @@ class MenuList extends React.Component{
             console.log('親component:menus', menus);
             tasks.push(<Menu key={menus[i].id} {...menus[i]}
                 onEnterUpdateMenu={(text) => onEnterUpdateMenu(menus[i].id, text)}
+                onClickRemove={()=>onClickRemove(menus[i].id)}
             />);
         }
         console.log('親component: tasks(配列にpropsをpushしたやつ)', tasks);
@@ -44,10 +47,10 @@ MenuList.propTypes = {
             id: PropTypes.string.isRequired,
             isDone: PropTypes.bool.isRequired,
             text: PropTypes.string.isRequired
-            // date: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
-    onEnterUpdateMenu: PropTypes.func.isRequired
+    onEnterUpdateMenu: PropTypes.func.isRequired,
+    onClickRemove: PropTypes.func.isRequired
 };
 
 

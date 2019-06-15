@@ -2,12 +2,13 @@
     margin-right: 5%;
     margin-top: auto;
     margin-bottom: auto;
+    margin-left: auto;
 }
 
 .c-menu__title {
     font-weight: bold;
     font-size: $space-xl;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
 }
 
@@ -20,15 +21,15 @@
 }
 
 .c-menu__body {
-    font-size: $font-size-s;
-    min-width: 562px;
-    text-align: center;
+    font-size: $font-size-m;
+    width: 430px;
 }
 
 .c-menu__delete {
     width: 40px;
     height: 40px;
     margin-left: 2%;
+    margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
 }

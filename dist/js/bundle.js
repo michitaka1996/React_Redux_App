@@ -1570,6 +1570,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.addMenu = addMenu;
+exports.deleteMenu = deleteMenu;
 exports.updateMenu = updateMenu;
 //actions
 
@@ -1580,6 +1581,7 @@ exports.updateMenu = updateMenu;
 
 //渡す引数、メニューのid、メニュー内容(text)、疲労度(degree)
 function addMenu(id, text, degree, date) {
+    console.log('actions: addMenuです');
     console.log('actions: dispach()を指定することでcomponentから渡された値の入っているactionsです。typeを識別してreducersへその値を引き渡します。');
     return {
         type: "ADD",
@@ -1587,6 +1589,13 @@ function addMenu(id, text, degree, date) {
         text: text,
         degree: degree,
         date: date
+    };
+}
+function deleteMenu(id) {
+    console.log('actions: deleteです');
+    return {
+        type: "DELETE",
+        id: id
     };
 }
 
@@ -28762,6 +28771,8 @@ var MenuCreater = function (_React$Component) {
         value: function showModal() {
             console.log('component(MenuCreater): モーダルを見せます');
             $('#js-modal').show();
+            console.log('component(MenuCreater)この時MenuCreaterにある値(val): ', this.state.val);
+            console.log('component(MenuCreater)この時MenuCreaterにある値(degree): ', this.state.degree);
         }
     }, {
         key: 'firstDegree',
@@ -28772,6 +28783,7 @@ var MenuCreater = function (_React$Component) {
     }, {
         key: 'handleChange',
         value: function handleChange(e) {
+            console.log('component(MenuCreater): handleChangeが呼ばれました');
             this.setState({
                 val: e.target.value
             });
@@ -28820,14 +28832,26 @@ var MenuCreater = function (_React$Component) {
                 } else if (val && !degree) {
                     console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
                     console.log('component(MenuCreater):actionに渡す値(val)', val);
-                    console.log('component(MenuCreater):actionに渡す値(date)', date);
-                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, date));
+                    console.log('component(MenuCreater):actionに渡す値(date)', date); //ここでのdateは読み込まれている
+                    console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
+                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date));
+                    //注意！！  dispachで渡すメソッドの引数の順番は、actionsでのメソッドの引数の値と同じ順番にすること logのプログラムも読み込んでしまうのでそこは気をつけていくこと
+                    // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
+                    //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
+                    //     date: "2019年6月15日(土)"
+                    //     degree: ""
+                    //     id: "0.fl5kq7vusx"
+                    //     text: "ggrgew↵"
+                    //     type: "ADD"
+                    //     __proto__: Object
                 }
+                console.log('component(MenuCreater):stateをリセットします');
+                // delete this.state.val;
                 this.setState({
                     val: '',
-                    degree: '',
-                    date: ''
+                    degree: ''
                 });
+                console.log('component(MenuCreater):リセットしたあとのstateの値', this.state.val); //renderが呼ばれるは処理が終わったあとの値なのでこの時点では値が存在する
             }
         }
     }, {
@@ -28974,6 +28998,9 @@ var mapDispachToProps = function mapDispachToProps(dispatch) {
     return {
         onEnterUpdateMenu: function onEnterUpdateMenu(id, text) {
             dispatch((0, _actions.updateMenu)(id, text));
+        },
+        onClickRemove: function onClickRemove(id) {
+            dispatch((0, _actions.deleteMenu)(id));
         }
     };
 };
@@ -29018,6 +29045,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 //親コンポーネント
 //各Menuの統括する　Menuの親コンポーネント
+//各menuに対してなにかアクションを起こす時に、その操作を統括する
+//子要素に、propsとしてメソッドを渡している そのメソッドはcontanerの方で調整している(dispach)
 //この親コンポーネントに、containerからdispach()やstateを渡すことになる
 //この親コンポーネントは、子コンポーネントへpropsを受け渡すことになる
 var MenuList = function (_React$Component) {
@@ -29047,7 +29076,20 @@ var MenuList = function (_React$Component) {
                 tasks.push(_react2.default.createElement(_Menu2.default, _extends({ key: menus[i].id }, menus[i], {
                     onEnterUpdateMenu: function onEnterUpdateMenu(text) {
                         return _onEnterUpdateMenu(menus[i].id, text);
-                    }
+                    },
+                    onClickRemove: function (_onClickRemove) {
+                        function onClickRemove() {
+                            return _onClickRemove.apply(this, arguments);
+                        }
+
+                        onClickRemove.toString = function () {
+                            return _onClickRemove.toString();
+                        };
+
+                        return onClickRemove;
+                    }(function () {
+                        return onClickRemove(menus[i].id);
+                    })
                 })));
             };
 
@@ -29074,9 +29116,9 @@ MenuList.propTypes = {
         id: _propTypes2.default.string.isRequired,
         isDone: _propTypes2.default.bool.isRequired,
         text: _propTypes2.default.string.isRequired
-        // date: PropTypes.string.isRequired
     }).isRequired).isRequired,
-    onEnterUpdateMenu: _propTypes2.default.func.isRequired
+    onEnterUpdateMenu: _propTypes2.default.func.isRequired,
+    onClickRemove: _propTypes2.default.func.isRequired
 };
 
 exports.default = MenuList;
@@ -29139,6 +29181,12 @@ var Menu = function (_React$Component) {
     _this.handleChangeText = _this.handleChangeText.bind(_this);
     _this.handleKeyUpClose = _this.handleKeyUpClose.bind(_this);
     _this.handleClickEdit = _this.handleClickEdit.bind(_this);
+
+    //これらはコールバックで、containerで渡すのでthisのbindはいらない
+    // this.onClickToggleDone = this.onClickToggleDone.bind(this);
+    // this.onClickRemove = this.onClickRemove.bind(this);
+    // this.onClickEdit = this.onClickEdit.bind(this);
+
     return _this;
   }
 
@@ -29170,6 +29218,20 @@ var Menu = function (_React$Component) {
         editMode: true
       });
     }
+    //本来ならここでonClickなどのメソッドはここからコールバックさせるが、Reduxでは
+    //propsをdispatchしてactionsに引き渡すことができる。
+    //なお、dispachでのメソッドは、containerの中で整理すること(connnectで各メソッドのマッピングを行いコンポーネントへ渡している)
+    // onClickToggleDone() { 
+    //   console.log('練習メニューdoneです！');
+    // }
+    // onClickRemove() {
+    //   console.log('この練習メニューを削除します');
+    // }
+    // onClickEdit() {
+    //   console.log('この練習メニューを編集します');
+    // }
+
+
   }, {
     key: 'render',
     value: function render() {
@@ -29185,7 +29247,11 @@ var Menu = function (_React$Component) {
         onChange: this.handleChangeText, onKeyUp: this.handleKeyUpClose }) : _react2.default.createElement(
         'div',
         { className: 'c-menu__body', onClick: this.handleClickEdit },
-        this.state.text
+        _react2.default.createElement(
+          'p',
+          null,
+          this.state.text
+        )
       );
 
       return _react2.default.createElement(
@@ -29218,7 +29284,7 @@ var Menu = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'c-menu__delete' },
+          { className: 'c-menu__delete', onClick: onClickRemove },
           _react2.default.createElement('i', { className: 'far fa-2x fa-times-circle' })
         )
       );
@@ -29228,12 +29294,17 @@ var Menu = function (_React$Component) {
   return Menu;
 }(_react2.default.Component);
 
+//このコンポーネント内で使う、各プロパティやメソッドは、ここpropTypesで制限する必要がある
+//MenuはMenuList、containerからの受け渡しがあるので、Menuのstateで使うthis.propsのtextだけでなく、
+//id、idDone　も必要である
+
+
 Menu.propTypes = {
   id: _propTypes2.default.string.isRequired,
   text: _propTypes2.default.string.isRequired,
   isDone: _propTypes2.default.bool.isRequired,
-  // date: PropTypes.string.isRequired,
-  onEnterUpdateMenu: _propTypes2.default.func.isRequired
+  onEnterUpdateMenu: _propTypes2.default.func.isRequired,
+  onClickRemove: _propTypes2.default.func.isRequired
 };
 
 exports.default = Menu;
@@ -29361,7 +29432,8 @@ var initialState = {
     menus: [{
         id: 'XXX',
         text: 'gegeqwgregqgegrergqs',
-        isDone: false
+        isDone: false,
+        date: 'YYY'
     }]
 };
 console.log('reducers: 初期値', initialState); //最初だけ読みとこまれる
@@ -29389,6 +29461,10 @@ function menu() {
                     date: action.date
                 }])
             };
+        case 'DELETE':
+            return Object.assign({}, state, {
+                menus: _lodash2.default.reject(state.menus, { 'id': action.id })
+            });
         case 'UPDATE':
             return Object.assign({}, state, {
                 menus: state.map(function (menu) {
