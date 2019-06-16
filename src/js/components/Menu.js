@@ -23,12 +23,7 @@ class Menu extends React.Component{
         }
       this.handleChangeText = this.handleChangeText.bind(this);
       this.handleKeyUpClose = this.handleKeyUpClose.bind(this);
-      this.handleClickEdit = this.handleClickEdit.bind(this);
-
-      //これらはコールバックで、containerで渡すのでthisのbindはいらない
-        // this.onClickToggleDone = this.onClickToggleDone.bind(this);
-        // this.onClickRemove = this.onClickRemove.bind(this);
-        // this.onClickEdit = this.onClickEdit.bind(this);
+      this.handleShowEdit = this.handleShowEdit.bind(this);  //stateのデータを変更して完結させることができるのでthisバインド
 
     }
   handleChangeText(e) {
@@ -39,36 +34,26 @@ class Menu extends React.Component{
   }
   handleKeyUpClose(e) {
     if (e.keyCode === 13 && e.shiftKey === true) {
-      console.log(編集確定します);
+      console.log('子component(Menu) : この内容で編集を確定します。');
       this.setState({
-        editMode: true
+        editMode: false
       });
-      console.log('子component(Menu) ：アップデートします。アップデートするためにpropsを実行します。');
+      console.log('子component(Menu) :アップデートします。アップデートするためにpropsを実行します。');
+      console.log('子component(Menu) : 変更した内容', e.currentTarget.value); 
       this.props.onEnterUpdateMenu(e.currentTarget.value);
     }
   }
-  handleClickEdit() {
-    console.log('子component(Menu): 編集します');
+  handleShowEdit() {
+    console.log('子component(Menu):　編集します');
     this.setState({
       editMode: true
     });
   }
-  //本来ならここでonClickなどのメソッドはここからコールバックさせるが、Reduxでは
-  　//propsをdispatchしてactionsに引き渡すことができる。
-  　//なお、dispachでのメソッドは、containerの中で整理すること(connnectで各メソッドのマッピングを行いコンポーネントへ渡している)
-  // onClickToggleDone() { 
-  //   console.log('練習メニューdoneです！');
-  // }
-  // onClickRemove() {
-  //   console.log('この練習メニューを削除します');
-  // }
-  // onClickEdit() {
-  //   console.log('この練習メニューを編集します');
-  // }
 
 
   render() {
-      console.log('子component(Menu): textとは', this.state.text);
+    console.log('子component(Menu): textとは', this.state.text);
+    console.log('子component(Menu): editModeとは', this.state.editMode);
       //クラスも動的に変更させること
     　　//クラスがこのままだとモック通り
     　　　//どこのスタイルを変えて行きたいか、->
@@ -78,13 +63,13 @@ class Menu extends React.Component{
     
     //propsで受け取っているもの
      //注意！ ここでこのコンポーネントにpropとして指定しないとエラーになる
-    const { onClickRemove } = this.props;
+    const { onClickRemove, onClickToggleDone } = this.props;
     console.log('子component(Menu): Menuコンポーネントで指定したthis.propsの中身', this.props);
 
     const textarea = (this.state.editMode) ?
-      <textarea className="editText" value={this.state.text} type="text"
+      <textarea className="c-menu__editText" value={this.state.text} type="text"
                 onChange={this.handleChangeText} onKeyUp={this.handleKeyUpClose}/> :
-      <div className="c-menu__body" onClick={this.handleClickEdit}>
+      <div className="c-menu__body">
         <p>
           {this.state.text}
         </p>
@@ -92,13 +77,13 @@ class Menu extends React.Component{
     
     return (
          <section className="p-task">
-                <div className="c-menu__check">
+                <div className="c-menu__check" onClick={onClickToggleDone}>
                     <i className="far fa-3x fa-check-circle"></i>
                 </div>
                 <div className="c-menu__contents">
                     <h3 className="c-menu__title">ここを動的にかえる &emsp; <div className="c-menu__date" id="menu-date">{this.props.date}</div></h3> 
                     {textarea}
-                    <div className="c-menu__edit" >
+                    <div className="c-menu__edit" onClick={this.handleShowEdit}>
                         <i className="fal fa-2x fa-edit"></i>
                     </div>
                 </div>
@@ -118,7 +103,8 @@ Menu.propTypes = {
   text: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
   onEnterUpdateMenu: PropTypes.func.isRequired,
-  onClickRemove: PropTypes.func.isRequired
+  onClickRemove: PropTypes.func.isRequired,
+  onClickToggleDone: PropTypes.func.isRequired,
 };
 
 export default Menu;

@@ -26,10 +26,17 @@ export function deleteMenu(id) {
 }
 
 export function updateMenu(id, text) {
-    console.log('actions: updateのactionsについて');
+    console.log('actions: updateです');
     return {
         type: "UPDATE",
         id: id,
         text: text
     }
+}
+export function toggleDone(id) {
+    console.log('actions: toggleDoneです');
+    return {
+        type: "TOGGLE_DONE",
+        id: id
+    };
 }

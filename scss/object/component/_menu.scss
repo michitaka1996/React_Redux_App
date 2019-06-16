@@ -20,9 +20,11 @@
     min-height: 80px;
 }
 
-.c-menu__body {
+.c-menu__body, .c-menu__editText {
     font-size: $font-size-m;
     width: 430px;
+    border: none;
+    background: #EEEEEE;
 }
 
 .c-menu__delete {

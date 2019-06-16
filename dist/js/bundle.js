@@ -1572,6 +1572,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.addMenu = addMenu;
 exports.deleteMenu = deleteMenu;
 exports.updateMenu = updateMenu;
+exports.toggleDone = toggleDone;
 //actions
 
 
@@ -1600,11 +1601,18 @@ function deleteMenu(id) {
 }
 
 function updateMenu(id, text) {
-    console.log('actions: updateのactionsについて');
+    console.log('actions: updateです');
     return {
         type: "UPDATE",
         id: id,
         text: text
+    };
+}
+function toggleDone(id) {
+    console.log('actions: toggleDoneです');
+    return {
+        type: "TOGGLE_DONE",
+        id: id
     };
 }
 
@@ -28807,22 +28815,6 @@ var MenuCreater = function (_React$Component) {
                 var date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
                 console.log('component(MenuCreater): 今日のdate', date);
 
-                // const createDate = () => {
-                //     let now = new Date();
-                //     let y = now.getFullYear();
-                //     let m = now.getMonth() + 1;
-                //     let d = now.getDate();
-                //     let w = now.getDay();
-                //     let wd = ['日', '月', '火', '水', '木', '金', '土'];
-                //     let date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
-                //     // $('#date').text(y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')');
-                //     //もしメニュー追加されたら、~日付までのメニューを追加させる
-                //     // $('#menu-date').text(m + '月' + d + '日' + '(' + wd[w] + ')');
-                //     console.log('今の日時', date);
-                //     return date
-                // };
-                // console.log('日時', createDate);
-
                 if (val && degree) {
                     console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
                     console.log('component(MenuCreater):actionに渡す値(val)', val);
@@ -29002,6 +28994,9 @@ var mapDispachToProps = function mapDispachToProps(dispatch) {
         },
         onClickRemove: function onClickRemove(id) {
             dispatch((0, _actions.deleteMenu)(id));
+        },
+        onClickToggleDone: function onClickToggleDone(id) {
+            dispatch((0, _actions.toggleDone)(id));
         }
     };
 };
@@ -29070,7 +29065,8 @@ var MenuList = function (_React$Component) {
             var _props = this.props,
                 menus = _props.menus,
                 _onEnterUpdateMenu = _props.onEnterUpdateMenu,
-                _onClickRemove = _props.onClickRemove;
+                _onClickRemove = _props.onClickRemove,
+                _onClickToggleDone = _props.onClickToggleDone;
 
             console.log('親component: この時点でのprops', this.props); //ここでcontainerからpropが渡っていて、指定できているか確認すること
             console.log('親component: menusとは', this.props.menus);
@@ -29086,6 +29082,9 @@ var MenuList = function (_React$Component) {
                     },
                     onClickRemove: function onClickRemove() {
                         return _onClickRemove(menus[i].id);
+                    },
+                    onClickToggleDone: function onClickToggleDone() {
+                        return _onClickToggleDone(menus[i].id);
                     }
                 })));
             };
@@ -29117,7 +29116,8 @@ MenuList.propTypes = {
         text: _propTypes2.default.string.isRequired
     }).isRequired).isRequired,
     onEnterUpdateMenu: _propTypes2.default.func.isRequired,
-    onClickRemove: _propTypes2.default.func.isRequired
+    onClickRemove: _propTypes2.default.func.isRequired,
+    onClickToggleDone: _propTypes2.default.func.isRequired
 };
 
 exports.default = MenuList;
@@ -29179,12 +29179,7 @@ var Menu = function (_React$Component) {
     };
     _this.handleChangeText = _this.handleChangeText.bind(_this);
     _this.handleKeyUpClose = _this.handleKeyUpClose.bind(_this);
-    _this.handleClickEdit = _this.handleClickEdit.bind(_this);
-
-    //これらはコールバックで、containerで渡すのでthisのbindはいらない
-    // this.onClickToggleDone = this.onClickToggleDone.bind(this);
-    // this.onClickRemove = this.onClickRemove.bind(this);
-    // this.onClickEdit = this.onClickEdit.bind(this);
+    _this.handleShowEdit = _this.handleShowEdit.bind(_this); //stateのデータを変更して完結させることができるのでthisバインド
 
     return _this;
   }
@@ -29201,40 +29196,28 @@ var Menu = function (_React$Component) {
     key: 'handleKeyUpClose',
     value: function handleKeyUpClose(e) {
       if (e.keyCode === 13 && e.shiftKey === true) {
-        console.log(編集確定します);
+        console.log('子component(Menu) : この内容で編集を確定します。');
         this.setState({
-          editMode: true
+          editMode: false
         });
-        console.log('子component(Menu) ：アップデートします。アップデートするためにpropsを実行します。');
+        console.log('子component(Menu) :アップデートします。アップデートするためにpropsを実行します。');
+        console.log('子component(Menu) : 変更した内容', e.currentTarget.value);
         this.props.onEnterUpdateMenu(e.currentTarget.value);
       }
     }
   }, {
-    key: 'handleClickEdit',
-    value: function handleClickEdit() {
-      console.log('子component(Menu): 編集します');
+    key: 'handleShowEdit',
+    value: function handleShowEdit() {
+      console.log('子component(Menu):　編集します');
       this.setState({
         editMode: true
       });
     }
-    //本来ならここでonClickなどのメソッドはここからコールバックさせるが、Reduxでは
-    //propsをdispatchしてactionsに引き渡すことができる。
-    //なお、dispachでのメソッドは、containerの中で整理すること(connnectで各メソッドのマッピングを行いコンポーネントへ渡している)
-    // onClickToggleDone() { 
-    //   console.log('練習メニューdoneです！');
-    // }
-    // onClickRemove() {
-    //   console.log('この練習メニューを削除します');
-    // }
-    // onClickEdit() {
-    //   console.log('この練習メニューを編集します');
-    // }
-
-
   }, {
     key: 'render',
     value: function render() {
       console.log('子component(Menu): textとは', this.state.text);
+      console.log('子component(Menu): editModeとは', this.state.editMode);
       //クラスも動的に変更させること
       //クラスがこのままだとモック通り
       //どこのスタイルを変えて行きたいか、->
@@ -29244,14 +29227,16 @@ var Menu = function (_React$Component) {
 
       //propsで受け取っているもの
       //注意！ ここでこのコンポーネントにpropとして指定しないとエラーになる
-      var onClickRemove = this.props.onClickRemove;
+      var _props = this.props,
+          onClickRemove = _props.onClickRemove,
+          onClickToggleDone = _props.onClickToggleDone;
 
       console.log('子component(Menu): Menuコンポーネントで指定したthis.propsの中身', this.props);
 
-      var textarea = this.state.editMode ? _react2.default.createElement('textarea', { className: 'editText', value: this.state.text, type: 'text',
+      var textarea = this.state.editMode ? _react2.default.createElement('textarea', { className: 'c-menu__editText', value: this.state.text, type: 'text',
         onChange: this.handleChangeText, onKeyUp: this.handleKeyUpClose }) : _react2.default.createElement(
         'div',
-        { className: 'c-menu__body', onClick: this.handleClickEdit },
+        { className: 'c-menu__body' },
         _react2.default.createElement(
           'p',
           null,
@@ -29264,7 +29249,7 @@ var Menu = function (_React$Component) {
         { className: 'p-task' },
         _react2.default.createElement(
           'div',
-          { className: 'c-menu__check' },
+          { className: 'c-menu__check', onClick: onClickToggleDone },
           _react2.default.createElement('i', { className: 'far fa-3x fa-check-circle' })
         ),
         _react2.default.createElement(
@@ -29283,7 +29268,7 @@ var Menu = function (_React$Component) {
           textarea,
           _react2.default.createElement(
             'div',
-            { className: 'c-menu__edit' },
+            { className: 'c-menu__edit', onClick: this.handleShowEdit },
             _react2.default.createElement('i', { className: 'fal fa-2x fa-edit' })
           )
         ),
@@ -29309,7 +29294,8 @@ Menu.propTypes = {
   text: _propTypes2.default.string.isRequired,
   isDone: _propTypes2.default.bool.isRequired,
   onEnterUpdateMenu: _propTypes2.default.func.isRequired,
-  onClickRemove: _propTypes2.default.func.isRequired
+  onClickRemove: _propTypes2.default.func.isRequired,
+  onClickToggleDone: _propTypes2.default.func.isRequired
 };
 
 exports.default = Menu;
@@ -29455,6 +29441,11 @@ function menu() {
     var action = arguments[1];
 
     console.log('reducers: reducersです');
+    console.log('reducers: menuの内容', menu);
+    //結果  stateとactionが入っている
+    //var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+    //var action = arguments[1];
+
     switch (action.type) {
         case 'ADD':
             return {
@@ -29471,10 +29462,21 @@ function menu() {
             });
         case 'UPDATE':
             return Object.assign({}, state, {
-                menus: state.map(function (menu) {
+                menus: state.menus.map(function (menu) {
                     if (menu.id === action.id) {
                         return Object.assign({}, menu, {
                             text: action.text
+                        });
+                    }
+                    return menu;
+                })
+            });
+        case 'TOGGLE_DONE':
+            return Object.assign({}, state, {
+                menus: state.menus.map(function (menu) {
+                    if (menu.id === action.id) {
+                        return Object.assign({}, menu, {
+                            idDone: !menu.isDone
                         });
                     }
                     return menu;

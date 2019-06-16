@@ -134,9 +134,11 @@ body {
 .c-menu__contents {
   min-height: 80px; }
 
-.c-menu__body {
+.c-menu__body, .c-menu__editText {
   font-size: 18px;
-  width: 430px; }
+  width: 430px;
+  border: none;
+  background: #EEEEEE; }
 
 .c-menu__delete {
   width: 40px;

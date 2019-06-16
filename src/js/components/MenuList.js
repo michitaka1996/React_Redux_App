@@ -17,7 +17,7 @@ class MenuList extends React.Component{
     }
     render() {
         //propsで受け渡しているもの
-        const { menus, onEnterUpdateMenu ,  onClickRemove } = this.props;
+        const { menus, onEnterUpdateMenu ,  onClickRemove, onClickToggleDone } = this.props;
         console.log('親component: この時点でのprops', this.props);  //ここでcontainerからpropが渡っていて、指定できているか確認すること
         console.log('親component: menusとは', this.props.menus);
         
@@ -27,7 +27,8 @@ class MenuList extends React.Component{
             console.log('親component:menus', menus);
             tasks.push(<Menu key={menus[i].id} {...menus[i]}
                 onEnterUpdateMenu={(text) => onEnterUpdateMenu(menus[i].id, text)}
-                onClickRemove={()=>onClickRemove(menus[i].id)}
+                onClickRemove={() => onClickRemove(menus[i].id)}
+                onClickToggleDone={() => onClickToggleDone(menus[i].id)}
             />);
         }
         console.log('親component: tasks(配列にpropsをpushしたやつ)', tasks);
@@ -53,7 +54,8 @@ MenuList.propTypes = {
         }).isRequired
     ).isRequired,
     onEnterUpdateMenu: PropTypes.func.isRequired,
-    onClickRemove: PropTypes.func.isRequired
+    onClickRemove: PropTypes.func.isRequired,
+    onClickToggleDone: PropTypes.func.isRequired,
 };
 
 

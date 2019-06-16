@@ -26,6 +26,11 @@ console.log('reducers: 初期値', initialState); //最初だけ読みとこま�
 // reducer名がそのままstateの名前になる  (このコンポーネントのstateの情報ということ)
 export default function menu(state = initialState, action) {
     console.log('reducers: reducersです');
+    console.log('reducers: menuの内容', menu);
+    //結果  stateとactionが入っている
+        //var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+        //var action = arguments[1];
+    
     switch (action.type) {
         case 'ADD':
             return {
@@ -45,13 +50,24 @@ export default function menu(state = initialState, action) {
             })
         case 'UPDATE':
             return Object.assign({}, state, {
-                menus: state.map((menu) => {
+                menus: state.menus.map((menu) => {
                     if (menu.id === action.id) {
                         return Object.assign({}, menu, {
                             text: action.text
                         })
                     }
                     return menu
+                })
+            });
+        case 'TOGGLE_DONE':
+            return Object.assign({}, state, {
+                menus: state.menus.map((menu) => {
+                    if (menu.id === action.id) {
+                        return Object.assign({}, menu, {
+                            idDone: !menu.isDone
+                        })
+                    }
+                    return menu  
                 })
             });
         default:

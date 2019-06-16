@@ -62,21 +62,6 @@ class MenuCreater extends React.Component{
             let date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
             console.log('component(MenuCreater): 今日のdate', date);
 
-            // const createDate = () => {
-            //     let now = new Date();
-            //     let y = now.getFullYear();
-            //     let m = now.getMonth() + 1;
-            //     let d = now.getDate();
-            //     let w = now.getDay();
-            //     let wd = ['日', '月', '火', '水', '木', '金', '土'];
-            //     let date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
-            //     // $('#date').text(y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')');
-            //     //もしメニュー追加されたら、~日付までのメニューを追加させる
-            //     // $('#menu-date').text(m + '月' + d + '日' + '(' + wd[w] + ')');
-            //     console.log('今の日時', date);
-            //     return date
-            // };
-            // console.log('日時', createDate);
 
             if (val && degree) {
                 console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
