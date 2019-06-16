@@ -101,7 +101,10 @@ body {
   box-sizing: border-box;
   padding: 30px; }
   .p-modalWindow h2 {
-    font-weight: bold; }
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    margin: auto; }
 
 .c-addMenu {
   font-family: FontAwesome;
@@ -139,6 +142,8 @@ body {
   width: 430px;
   border: none;
   background: #EEEEEE; }
+  .c-menu__body li, .c-menu__editText li {
+    list-style-type: disc; }
 
 .c-menu__delete {
   width: 40px;
@@ -152,8 +157,13 @@ body {
   text-align: right; }
 
 .c-modalHead {
-  display: flex; }
-  .c-modalHead__number {
+  display: flex;
+  width: 60%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto; }
+  .c-modalHead__btn {
     background: #6600FF;
     border-radius: 0.8em;
     -moz-border-radius: 0.8em;
@@ -166,8 +176,22 @@ body {
     text-align: center;
     width: 1.6em; }
 
-.c-modal__btn {
+.c-modalBody textarea {
+  width: 100%;
+  height: 200px;
+  border: 0.1px solid;
+  margin: 50px auto 0 auto;
+  font-size: 28px; }
+
+.c-modalHead__btn {
   cursor: pointer; }
+
+.c-modal__colorFirst,
+.c-modal__colorSecond,
+.c-modal__colorThird,
+.c-modal__colorFourth,
+.c-modal__colorFifth {
+  background: #FF0066; }
 
 body {
   background: #EEEEEE; }

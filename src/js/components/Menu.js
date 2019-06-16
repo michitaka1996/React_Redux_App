@@ -70,9 +70,10 @@ class Menu extends React.Component{
       <textarea className="c-menu__editText" value={this.state.text} type="text"
                 onChange={this.handleChangeText} onKeyUp={this.handleKeyUpClose}/> :
       <div className="c-menu__body">
-        <p>
-          {this.state.text}
-        </p>
+          {/* ここに指定したメニューを表示させる */}
+          <ul>
+            <li>{this.state.text}</li>
+          </ul>
       </div>;
     
     return (

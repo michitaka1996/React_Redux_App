@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -261,9 +261,9 @@ process.umask = function() { return 0; };
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(26);
-} else {
   module.exports = __webpack_require__(27);
+} else {
+  module.exports = __webpack_require__(28);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -409,11 +409,11 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(53)(ReactIs.isElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(54)(ReactIs.isElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(54)();
+  module.exports = __webpack_require__(55)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -426,9 +426,9 @@ if (process.env.NODE_ENV !== 'production') {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(51);
-} else {
   module.exports = __webpack_require__(52);
+} else {
+  module.exports = __webpack_require__(53);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -569,9 +569,9 @@ module.exports = ReactPropTypesSecret;
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createStore__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__combineReducers__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bindActionCreators__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__applyMiddleware__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compose__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_warning__ = __webpack_require__(17);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return __WEBPACK_IMPORTED_MODULE_0__createStore__["b"]; });
@@ -605,9 +605,9 @@ if (process.env.NODE_ENV !== 'production' && typeof isCrushed.name === 'string' 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(60);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
@@ -701,9 +701,9 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(30);
-} else {
   module.exports = __webpack_require__(31);
+} else {
+  module.exports = __webpack_require__(32);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -716,7 +716,7 @@ if (process.env.NODE_ENV === 'production') {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionTypes; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = createStore;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_es_isPlainObject__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_symbol_observable__ = __webpack_require__(45);
 
 
 
@@ -971,9 +971,9 @@ var ActionTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetTag_js__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype_js__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike_js__ = __webpack_require__(44);
 
 
 
@@ -1043,7 +1043,7 @@ function isPlainObject(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root_js__ = __webpack_require__(38);
 
 
 /** Built-in value references. */
@@ -1160,18 +1160,18 @@ var storeShape = __WEBPACK_IMPORTED_MODULE_0_prop_types___default.a.shape({
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = connectAdvanced;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_inheritsLoose__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_assertThisInitialized__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_assertThisInitialized__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__babel_runtime_helpers_esm_extends__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_hoist_non_react_statics__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_invariant__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_invariant__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_is__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_is___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_is__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_Subscription__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_Subscription__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_PropTypes__ = __webpack_require__(20);
 
 
@@ -1549,7 +1549,7 @@ function wrapMapToPropsFunc(mapToProps, methodName) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = verifyPlainObject;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isPlainObject__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isPlainObject__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__warning__ = __webpack_require__(10);
 
 
@@ -1561,6 +1561,395 @@ function verifyPlainObject(value, displayName, methodName) {
 
 /***/ }),
 /* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(9);
+
+var _index = __webpack_require__(25);
+
+var _propTypes = __webpack_require__(4);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+//component(MenuCreater)
+//Menuを作るためのメソッドをdispachするのでconnectを使う
+
+
+//dispachを使って、actionsに渡す
+
+
+//このコンポーネントのデータ
+//val(モーダルのtextareaのデータ)
+//valは投稿内容
+var MenuCreater = function (_React$Component) {
+    _inherits(MenuCreater, _React$Component);
+
+    function MenuCreater(props) {
+        _classCallCheck(this, MenuCreater);
+
+        var _this = _possibleConstructorReturn(this, (MenuCreater.__proto__ || Object.getPrototypeOf(MenuCreater)).call(this, props));
+
+        _this.state = {
+            val: '',
+            degree: '',
+            isDegree: false //degree(疲労度が存在するかどうか)
+        };
+        _this.showModal = _this.showModal.bind(_this);
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleKeyUp = _this.handleKeyUp.bind(_this);
+
+        _this.handleColor = _this.handleColor.bind(_this);
+        _this.firstDegree = _this.firstDegree.bind(_this);
+        _this.secondDegree = _this.secondDegree.bind(_this);
+        _this.thirdDegree = _this.thirdDegree.bind(_this);
+        _this.fourthDegree = _this.fourthDegree.bind(_this);
+        _this.fifthDegree = _this.fifthDegree.bind(_this);
+
+        return _this;
+    }
+
+    _createClass(MenuCreater, [{
+        key: 'createHashId',
+        value: function createHashId() {
+            console.log('component(MenuCreater): 一意のIDを作ります');
+            return Math.random().toString(36).slice(-16);
+        }
+    }, {
+        key: 'showModal',
+        value: function showModal() {
+            console.log('component(MenuCreater): モーダルを見せます');
+            $('#js-modal').show();
+            console.log('component(MenuCreater)この時MenuCreaterにある値(val): ', this.state.val);
+            console.log('component(MenuCreater)この時MenuCreaterにある値(degree): ', this.state.degree);
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(e) {
+            console.log('component(MenuCreater): handleChangeが呼ばれました');
+            this.setState({
+                val: e.target.value
+            });
+        }
+    }, {
+        key: 'handleKeyUp',
+        value: function handleKeyUp(e) {
+            //テキスト確定
+            if (e.keyCode === 13 && e.shiftKey === true) {
+                console.log('component(MenuCreater): モーダルを非表示にします');
+                $('#js-modal').hide();
+                console.log('component(MenuCreater): Enter+ShiftKeyが押されたので確定します');
+                var val = e.target.value;
+                var degree = this.state.degree;
+                var now = new Date();
+                var y = now.getFullYear();
+                var m = now.getMonth() + 1;
+                var d = now.getDate();
+                var w = now.getDay();
+                var wd = ['日', '月', '火', '水', '木', '金', '土'];
+
+                var date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
+                console.log('component(MenuCreater): 今日のdate', date);
+
+                if (val && degree) {
+                    console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
+                    console.log('component(MenuCreater):actionに渡す値(val)', val);
+                    console.log('component(MenuCreater):actionに渡す値(degree)', degree);
+                    console.log('component(MenuCreater):actionに渡す値(date)', date);
+                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date)); //propsでdispachを受け取っている  connect(自分自身)
+                } else if (val && !degree) {
+                    console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
+                    console.log('component(MenuCreater):actionに渡す値(val)', val);
+                    console.log('component(MenuCreater):actionに渡す値(date)', date); //ここでのdateは読み込まれている
+                    console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
+                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date));
+                    //注意！！  dispachで渡すメソッドの引数の順番は、actionsでのメソッドの引数の値と同じ順番にすること logのプログラムも読み込んでしまうのでそこは気をつけていくこと
+                    // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
+                    //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
+                    //     date: "2019年6月15日(土)"
+                    //     degree: ""
+                    //     id: "0.fl5kq7vusx"
+                    //     text: "ggrgew↵"
+                    //     type: "ADD"
+                    //     __proto__: Object
+                }
+                console.log('component(MenuCreater):stateをリセットします'); //ついでにisDegreeも反転させておく
+                this.setState({
+                    val: '',
+                    degree: ''
+                });
+                console.log('component(MenuCreater):リセットしたあとのstateの値', this.state.val); //renderが呼ばれるは処理が終わったあとの値なのでこの時点では値が存在する
+            }
+        }
+    }, {
+        key: 'handleColor',
+        value: function handleColor() {
+            console.log('component(MenuCreater): handleColorです');
+            // const color = $('.c-modalBtn__first');   //ナンバークリックで色を変えること　クリックされたらisDegreeを反転させる
+            // if (this.state.isDegree) {
+            //     color.addClass("c-modal__color")  
+            //     } else {
+            //     color.removeClass("c-modal__color")  
+            // } 
+        }
+    }, {
+        key: 'firstDegree',
+        value: function firstDegree() {
+            console.log('component(MenuCreater): 疲労度1がクリックされました');
+            this.setState({
+                degree: 'first',
+                isDegree: !this.state.isDegree
+            });
+            this.handleColor();
+        }
+    }, {
+        key: 'secondDegree',
+        value: function secondDegree() {
+            console.log('component(MenuCreater): 疲労度2がクリックされました');
+            this.setState({
+                degree: 'second',
+                isDegree: !this.state.isDegree
+            });
+        }
+    }, {
+        key: 'thirdDegree',
+        value: function thirdDegree() {
+            console.log('component(MenuCreater): 疲労度3がクリックされました');
+            this.setState({
+                degree: 'third',
+                isDegree: !this.state.isDegree
+            });
+        }
+    }, {
+        key: 'fourthDegree',
+        value: function fourthDegree() {
+            console.log('component(MenuCreater): 疲労度4がクリックされました');
+            this.setState({
+                degree: 'fourth',
+                isDegree: !this.state.isDegree
+            });
+        }
+    }, {
+        key: 'fifthDegree',
+        value: function fifthDegree() {
+            console.log('component(MenuCreater): 疲労度5がクリックされました');
+            this.setState({
+                degree: 'fifth',
+                isDegree: !this.state.isDegree
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            console.log('component(MenuCreater): valの値render', this.state.val);
+            console.log('component(MenuCreater): degreeの値render', this.state.degree);
+            console.log('component(MenuCreater): 疲労度(render)は' + this.state.degree + 'です');
+            console.log('component(MenuCreater): isDegreeの値render', this.state.isDegree);
+
+            var colorFirst = $('.c-modalBtn__first'); //ナンバークリックで色を変えること　クリックされたらisDegreeを反転させる
+            var colorSecond = $('.c-modalBtn__second');
+            var colorThird = $('.c-modalBtn__third');
+            var colorFourth = $('.c-modalBtn__fourth');
+            var colorFifth = $('.c-modalBtn__fifth');
+
+            if (this.state.isDegree === true) {
+                switch (this.state.degree) {
+                    case 'first':
+                        colorFirst.addClass("c-modal__colorFirst");
+                        break;
+                    case 'second':
+                        colorSecond.addClass("c-modal__colorSecond");
+                        break;
+                    case 'third':
+                        colorThird.addClass("c-modal__colorThird");
+                        break;
+                    case 'fourth':
+                        colorFourth.addClass("c-modal__colorFourth");
+                        break;
+                    case 'fifth':
+                        colorFifth.addClass("c-modal__colorFifth");
+                        break;
+                    default:
+                }
+            }
+
+            if (this.state.isDegree === false) {
+                //もしisDegreeがfalseだったら、
+                colorFirst.removeClass("c-modal__colorFirst");
+                colorSecond.removeClass("c-modal__colorSecond");
+                colorThird.removeClass("c-modal__colorThird");
+                colorFourth.removeClass("c-modal__colorFourth");
+                colorFifth.removeClass("c-modal__colorFifth");
+                // switch (this.state.degree) {
+                //     case 'first':
+                //         colorFirst.removeClass("c-modal__colorFirst")
+                //         break;
+                //     case 'second':
+                //         colorSecond.removeClass("c-modal__colorSecond")
+                //         break;
+                //     case 'third':
+                //         colorThird.removeClass("c-modal__colorThird")   
+                //         break;
+                //     case 'fourth':
+                //         colorFourth.removeClass("c-modal__colorFourth") 
+                //         break;
+                //     case 'fifth':
+                //         colorFifth.removeClass("c-modal__colorFifth")  
+                //         break;
+                // }
+            }
+
+            //if文で書いた場合
+            // if (this.state.degree === 'first' && this.state.isDegree === true) {
+            //         colorFirst.addClass("c-modal__colorFirst")  
+            //         } else {
+            //         colorFirst.removeClass("c-modal__colorFirst")  
+            // } 
+
+            // if (this.state.degree === 'second' && this.state.isDegree === true) {
+            //         colorSecond.addClass("c-modal__colorSecond")  
+            //         } else {
+            //         colorSecond.removeClass("c-modal__colorSecond")  
+            // }
+
+            // if (this.state.degree === 'third' && this.state.isDegree === true) {
+            //         colorThird.addClass("c-modal__colorThird")  
+            //         } else {
+            //         colorThird.removeClass("c-modal__colorThird")  
+            // }
+
+            // if (this.state.degree === 'fourth' && this.state.isDegree === true) {
+            //         colorFourth.addClass("c-modal__colorFourth")  
+            //         } else {
+            //         colorFourth.removeClass("c-modal__colorFourth")  
+            // }
+
+            // if (this.state.degree === 'fifth' && this.state.isDegree === true) {
+            //         colorFifth.addClass("c-modal__colorFifth")  
+            //         } else {
+            //         colorFifth.removeClass("c-modal__colorFifth")  
+            // }
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'section',
+                    { className: 'p-createMenu', id: 'js-createMenu' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'c-addMenu', id: 'js-addMenu', onClick: this.showModal },
+                        _react2.default.createElement('i', { className: 'fal fa-3x fa-plus-circle' })
+                    ),
+                    _react2.default.createElement(
+                        'h1',
+                        null,
+                        'how\'s it going??'
+                    )
+                ),
+                _react2.default.createElement(
+                    'section',
+                    { className: 'p-modalWindow', id: 'js-modal', onClick: this.showModal },
+                    _react2.default.createElement(
+                        'h2',
+                        null,
+                        '\u4ECA\u65E5\u306E\u75B2\u52B4\u5EA6\u306F...'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'c-modalHead' },
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            _react2.default.createElement(
+                                'span',
+                                { id: 'js-modalBtn', className: 'c-modalHead__btn c-modalBtn__first c-modalHead__first', onClick: this.firstDegree },
+                                '1'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            _react2.default.createElement(
+                                'span',
+                                { id: 'js-modalBtn', className: 'c-modalHead__btn c-modalBtn__second', onClick: this.secondDegree },
+                                '2'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            _react2.default.createElement(
+                                'span',
+                                { id: 'js-modalBtn', className: 'c-modalHead__btn c-modalBtn__third', onClick: this.thirdDegree },
+                                '3'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            _react2.default.createElement(
+                                'span',
+                                { id: 'js-modalBtn', className: 'c-modalHead__btn c-modalBtn__fourth', onClick: this.fourthDegree },
+                                '4'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            _react2.default.createElement(
+                                'span',
+                                { id: 'js-modalBtn', className: 'c-modalHead__btn c-modalBtn__fifth', onClick: this.fifthDegree },
+                                '5'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'c-modalBody' },
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            '\u3084\u308A\u305F\u3044\u30E1\u30CB\u30E5\u30FC\u304C\u3042\u308C\u3070\u8FFD\u52A0\u3067\u304D\u307E\u3059\u3002'
+                        ),
+                        _react2.default.createElement('textarea', { name: '', id: '', cols: '30', rows: '10', onChange: this.handleChange, val: this.state.val, onKeyUp: this.handleKeyUp })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return MenuCreater;
+}(_react2.default.Component);
+
+MenuCreater.propTypes = {
+    dispatch: _propTypes2.default.func.isRequired
+};
+
+exports.default = (0, _reactRedux.connect)()(MenuCreater);
+
+/***/ }),
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1617,7 +2006,7 @@ function toggleDone(id) {
 }
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1627,7 +2016,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(28);
+var _reactDom = __webpack_require__(29);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -1635,7 +2024,7 @@ var _redux = __webpack_require__(8);
 
 var _reactRedux = __webpack_require__(9);
 
-var _MenuApp = __webpack_require__(67);
+var _MenuApp = __webpack_require__(68);
 
 var _MenuApp2 = _interopRequireDefault(_MenuApp);
 
@@ -1661,7 +2050,7 @@ _reactDom2.default.render(_react2.default.createElement(
 ), document.getElementById('app'));
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1693,7 +2082,7 @@ unstable_ConcurrentMode:x,unstable_Profiler:u,__SECRET_INTERNALS_DO_NOT_USE_OR_Y
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3602,7 +3991,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3640,15 +4029,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(29);
+  module.exports = __webpack_require__(30);
 } else {
-  module.exports = __webpack_require__(32);
+  module.exports = __webpack_require__(33);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3924,7 +4313,7 @@ X;X=!0;try{ki(a)}finally{(X=b)||W||Yh(1073741823,!1)}},__SECRET_INTERNALS_DO_NOT
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3953,7 +4342,7 @@ exports.unstable_shouldYield=function(){return!e&&(null!==d&&d.expirationTime<l|
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4660,7 +5049,7 @@ exports.unstable_getFirstCallbackNode = unstable_getFirstCallbackNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(3)))
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4685,7 +5074,7 @@ var React = __webpack_require__(1);
 var _assign = __webpack_require__(2);
 var checkPropTypes = __webpack_require__(6);
 var scheduler = __webpack_require__(13);
-var tracing = __webpack_require__(33);
+var tracing = __webpack_require__(34);
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -25946,22 +26335,22 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(34);
-} else {
   module.exports = __webpack_require__(35);
+} else {
+  module.exports = __webpack_require__(36);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25978,7 +26367,7 @@ Object.defineProperty(exports,"__esModule",{value:!0});var b=0;exports.__interac
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26409,13 +26798,13 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getRawTag_js__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objectToString_js__ = __webpack_require__(41);
 
 
 
@@ -26447,11 +26836,11 @@ function baseGetTag(value) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__ = __webpack_require__(39);
 
 
 /** Detect free variable `self`. */
@@ -26464,7 +26853,7 @@ var root = __WEBPACK_IMPORTED_MODULE_0__freeGlobal_js__["a" /* default */] || fr
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26476,7 +26865,7 @@ var freeGlobal = typeof global == 'object' && global && global.Object === Object
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26530,7 +26919,7 @@ function getRawTag(value) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26559,11 +26948,11 @@ function objectToString(value) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overArg_js__ = __webpack_require__(43);
 
 
 /** Built-in value references. */
@@ -26573,7 +26962,7 @@ var getPrototype = Object(__WEBPACK_IMPORTED_MODULE_0__overArg_js__["a" /* defau
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26595,7 +26984,7 @@ function overArg(func, transform) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26631,11 +27020,11 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(46);
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ponyfill_js__ = __webpack_require__(47);
 /* global window */
 
 
@@ -26656,10 +27045,10 @@ if (typeof self !== 'undefined') {
 var result = Object(__WEBPACK_IMPORTED_MODULE_0__ponyfill_js__["a" /* default */])(root);
 /* harmony default export */ __webpack_exports__["a"] = (result);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3), __webpack_require__(45)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3), __webpack_require__(46)(module)))
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -26689,7 +27078,7 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26714,7 +27103,7 @@ function symbolObservablePonyfill(root) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26855,7 +27244,7 @@ function combineReducers(reducers) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26909,7 +27298,7 @@ function bindActionCreators(actionCreators, dispatch) {
 }
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26965,7 +27354,7 @@ function applyMiddleware() {
 }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27049,7 +27438,7 @@ function createProvider(storeKey) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27071,7 +27460,7 @@ exports.isSuspense=function(a){return t(a)===p};
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27306,7 +27695,7 @@ exports.isSuspense = isSuspense;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27905,7 +28294,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27976,7 +28365,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27990,7 +28379,7 @@ function _assertThisInitialized(self) {
 }
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28100,7 +28489,7 @@ module.exports = hoistNonReactStatics;
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28157,7 +28546,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28252,7 +28641,7 @@ function () {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28260,11 +28649,11 @@ function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_extends__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_connectAdvanced__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_shallowEqual__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mapDispatchToProps__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mapStateToProps__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mergeProps__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__selectorFactory__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_shallowEqual__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mapDispatchToProps__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__mapStateToProps__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__mergeProps__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__selectorFactory__ = __webpack_require__(66);
 
 
 
@@ -28365,7 +28754,7 @@ function createConnect(_temp) {
 /* harmony default export */ __webpack_exports__["a"] = (createConnect());
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28401,7 +28790,7 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28430,7 +28819,7 @@ function whenMapDispatchToPropsIsObject(mapDispatchToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject]);
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28453,7 +28842,7 @@ function isPlainObject(obj) {
 }
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28472,7 +28861,7 @@ function whenMapStateToPropsIsMissing(mapStateToProps) {
 /* harmony default export */ __webpack_exports__["a"] = ([whenMapStateToPropsIsFunction, whenMapStateToPropsIsMissing]);
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28521,7 +28910,7 @@ function whenMergePropsIsOmitted(mergeProps) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28529,7 +28918,7 @@ function whenMergePropsIsOmitted(mergeProps) {
 /* unused harmony export pureFinalPropsSelectorFactory */
 /* harmony export (immutable) */ __webpack_exports__["a"] = finalPropsSelectorFactory;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_runtime_helpers_esm_objectWithoutPropertiesLoose__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verifySubselectors__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__verifySubselectors__ = __webpack_require__(67);
 
 
 function impureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch) {
@@ -28620,7 +29009,7 @@ function finalPropsSelectorFactory(dispatch, _ref2) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28645,7 +29034,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 }
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28661,7 +29050,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _MenuCreater = __webpack_require__(68);
+var _MenuCreater = __webpack_require__(24);
 
 var _MenuCreater2 = _interopRequireDefault(_MenuCreater);
 
@@ -28707,249 +29096,6 @@ var MenuApp = function (_React$Component) {
 exports.default = MenuApp;
 
 /***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(9);
-
-var _index = __webpack_require__(24);
-
-var _propTypes = __webpack_require__(4);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-//component(MenuCreater)
-//Menuを作るためのメソッドをdispachするのでconnectを使う
-
-
-//dispachを使って、actionsに渡す
-
-
-//このコンポーネントのデータ
-//val(モーダルのtextareaのデータ)
-//valは投稿内容
-var MenuCreater = function (_React$Component) {
-    _inherits(MenuCreater, _React$Component);
-
-    function MenuCreater(props) {
-        _classCallCheck(this, MenuCreater);
-
-        var _this = _possibleConstructorReturn(this, (MenuCreater.__proto__ || Object.getPrototypeOf(MenuCreater)).call(this, props));
-
-        _this.state = {
-            val: '',
-            degree: ''
-        };
-        _this.showModal = _this.showModal.bind(_this);
-        _this.firstDegree = _this.firstDegree.bind(_this);
-        _this.handleChange = _this.handleChange.bind(_this);
-        _this.handleKeyUp = _this.handleKeyUp.bind(_this);
-        return _this;
-    }
-
-    _createClass(MenuCreater, [{
-        key: 'createHashId',
-        value: function createHashId() {
-            console.log('component(MenuCreater): 一意のIDを作ります');
-            return Math.random().toString(36).slice(-16);
-        }
-    }, {
-        key: 'showModal',
-        value: function showModal() {
-            console.log('component(MenuCreater): モーダルを見せます');
-            $('#js-modal').show();
-            console.log('component(MenuCreater)この時MenuCreaterにある値(val): ', this.state.val);
-            console.log('component(MenuCreater)この時MenuCreaterにある値(degree): ', this.state.degree);
-        }
-    }, {
-        key: 'firstDegree',
-        value: function firstDegree() {
-            console.log('component(MenuCreater): 疲労度は' + this.state.degree + 'です');
-            this.setState({ degree: 'first' });
-        }
-    }, {
-        key: 'handleChange',
-        value: function handleChange(e) {
-            console.log('component(MenuCreater): handleChangeが呼ばれました');
-            this.setState({
-                val: e.target.value
-            });
-        }
-    }, {
-        key: 'handleKeyUp',
-        value: function handleKeyUp(e) {
-            if (e.keyCode === 13 && e.shiftKey === true) {
-                console.log('component(MenuCreater): モーダルを非表示にします');
-                $('#js-modal').hide();
-                console.log('component(MenuCreater): Enter+ShiftKeyが押されたので確定します');
-                var val = e.target.value;
-                var degree = this.state.degree;
-                var now = new Date();
-                var y = now.getFullYear();
-                var m = now.getMonth() + 1;
-                var d = now.getDate();
-                var w = now.getDay();
-                var wd = ['日', '月', '火', '水', '木', '金', '土'];
-
-                var date = y + '年' + m + '月' + d + '日' + '(' + wd[w] + ')';
-                console.log('component(MenuCreater): 今日のdate', date);
-
-                if (val && degree) {
-                    console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
-                    console.log('component(MenuCreater):actionに渡す値(val)', val);
-                    console.log('component(MenuCreater):actionに渡す値(degree)', degree);
-                    console.log('component(MenuCreater):actionに渡す値(date)', date);
-                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date)); //propsでdispachを受け取っている  connect(自分自身)
-                } else if (val && !degree) {
-                    console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
-                    console.log('component(MenuCreater):actionに渡す値(val)', val);
-                    console.log('component(MenuCreater):actionに渡す値(date)', date); //ここでのdateは読み込まれている
-                    console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
-                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date));
-                    //注意！！  dispachで渡すメソッドの引数の順番は、actionsでのメソッドの引数の値と同じ順番にすること logのプログラムも読み込んでしまうのでそこは気をつけていくこと
-                    // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
-                    //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
-                    //     date: "2019年6月15日(土)"
-                    //     degree: ""
-                    //     id: "0.fl5kq7vusx"
-                    //     text: "ggrgew↵"
-                    //     type: "ADD"
-                    //     __proto__: Object
-                }
-                console.log('component(MenuCreater):stateをリセットします');
-                // delete this.state.val;
-                this.setState({
-                    val: '',
-                    degree: ''
-                });
-                console.log('component(MenuCreater):リセットしたあとのstateの値', this.state.val); //renderが呼ばれるは処理が終わったあとの値なのでこの時点では値が存在する
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            console.log('component(MenuCreater): valの値render', this.state.val);
-            console.log('component(MenuCreater): degreeの値render', this.state.degree);
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'section',
-                    { className: 'p-createMenu', id: 'js-createMenu' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'c-addMenu', id: 'js-addMenu', onClick: this.showModal },
-                        _react2.default.createElement('i', { className: 'fal fa-3x fa-plus-circle' })
-                    ),
-                    _react2.default.createElement(
-                        'h1',
-                        null,
-                        'how\'s it going??'
-                    )
-                ),
-                _react2.default.createElement(
-                    'section',
-                    { className: 'p-modalWindow', id: 'js-modal', onClick: this.showModal },
-                    _react2.default.createElement(
-                        'h2',
-                        null,
-                        '\u4ECA\u65E5\u306E\u75B2\u52B4\u5EA6\u306F...'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'c-modalHead' },
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'c-modal__btn c-modalHead__number', onClick: this.firstDegree },
-                                '1'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'c-modal__btn c-modalHead__number' },
-                                '2'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'c-modal__btn c-modalHead__number' },
-                                '3'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'c-modal__btn c-modalHead__number' },
-                                '4'
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            _react2.default.createElement(
-                                'span',
-                                { className: 'c-modal__btn c-modalHead__number' },
-                                '5'
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'c-modalBody' },
-                        _react2.default.createElement(
-                            'h2',
-                            null,
-                            '\u3084\u308A\u305F\u3044\u30E1\u30CB\u30E5\u30FC\u304C\u3042\u308C\u3070\u8FFD\u52A0\u3067\u304D\u307E\u3059\u3002'
-                        ),
-                        _react2.default.createElement('textarea', { name: '', id: '', cols: '30', rows: '10', onChange: this.handleChange, val: this.state.val, onKeyUp: this.handleKeyUp })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return MenuCreater;
-}(_react2.default.Component);
-
-MenuCreater.propTypes = {
-    dispatch: _propTypes2.default.func.isRequired
-};
-
-exports.default = (0, _reactRedux.connect)()(MenuCreater);
-
-/***/ }),
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28962,11 +29108,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(9);
 
-var _actions = __webpack_require__(24);
+var _actions = __webpack_require__(25);
 
 var _MenuList = __webpack_require__(70);
 
 var _MenuList2 = _interopRequireDefault(_MenuList);
+
+var _MenuCreater = __webpack_require__(24);
+
+var _MenuCreater2 = _interopRequireDefault(_MenuCreater);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29006,7 +29156,7 @@ console.log('containers: mapDispachToPropの値', mapDispachToProps);
 //containerで第２引数で渡したいコンポーネント
 //第１引数のでは、state,action
 //stateをそのまま第２引数のコンポーネントで受け取る場合は、第１引数ではstate => state　という書き方　
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispachToProps)(_MenuList2.default); //menuListに渡すもの
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispachToProps)(_MenuList2.default, _MenuCreater2.default); //menuListに渡すもの
 
 /***/ }),
 /* 70 */
@@ -29238,9 +29388,13 @@ var Menu = function (_React$Component) {
         'div',
         { className: 'c-menu__body' },
         _react2.default.createElement(
-          'p',
+          'ul',
           null,
-          this.state.text
+          _react2.default.createElement(
+            'li',
+            null,
+            this.state.text
+          )
         )
       );
 
@@ -29482,6 +29636,7 @@ function menu() {
                     return menu;
                 })
             });
+
         default:
             return state; //当たり前だが、default値も設定させないとreducersを返せないようになる
     }

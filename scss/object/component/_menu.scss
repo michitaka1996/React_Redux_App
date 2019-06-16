@@ -25,6 +25,9 @@
     width: 430px;
     border: none;
     background: #EEEEEE;
+    li{
+        list-style-type: disc;
+    }
 }
 
 .c-menu__delete {

@@ -12,7 +12,7 @@ const initialState = {
         id: 'XXX',
         text: 'gegeqwgregqgegrergqs',
         isDone: false,
-        date: 'YYY'
+        date: 'YYY',
     }]
 };
 console.log('reducers: 初期値', initialState); //最初だけ読みとこまれる
@@ -70,6 +70,7 @@ export default function menu(state = initialState, action) {
                     return menu  
                 })
             });
+       
         default:
             return state; //当たり前だが、default値も設定させないとreducersを返せないようになる
     }

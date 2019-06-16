@@ -18,12 +18,21 @@ class MenuCreater extends React.Component{
         super(props);
         this.state = {
             val: '',
-            degree:''
+            degree: '',
+            isDegree: false //degree(疲労度が存在するかどうか)
         }
         this.showModal = this.showModal.bind(this);
-        this.firstDegree = this.firstDegree.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyUp = this.handleKeyUp.bind(this);
+
+        this.handleColor = this.handleColor.bind(this);
+        this.firstDegree = this.firstDegree.bind(this);
+        this.secondDegree = this.secondDegree.bind(this);
+        this.thirdDegree = this.thirdDegree.bind(this);
+        this.fourthDegree = this.fourthDegree.bind(this);
+        this.fifthDegree = this.fifthDegree.bind(this);
+        
+
     }
     createHashId() {
         console.log('component(MenuCreater): 一意のIDを作ります');
@@ -35,17 +44,13 @@ class MenuCreater extends React.Component{
         console.log('component(MenuCreater)この時MenuCreaterにある値(val): ', this.state.val);
         console.log('component(MenuCreater)この時MenuCreaterにある値(degree): ', this.state.degree);
     }
-    firstDegree() {
-        console.log('component(MenuCreater): 疲労度は' + this.state.degree + 'です');
-        this.setState({ degree: 'first' });
-    }
     handleChange(e) {
         console.log('component(MenuCreater): handleChangeが呼ばれました');
         this.setState({
             val: e.target.value
         });
     }
-    handleKeyUp(e) {
+    handleKeyUp(e) { //テキスト確定
         if (e.keyCode === 13 && e.shiftKey === true) {
             console.log('component(MenuCreater): モーダルを非表示にします');
             $('#js-modal').hide();
@@ -77,17 +82,16 @@ class MenuCreater extends React.Component{
                 console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
                 this.props.dispatch(addMenu(this.createHashId(), val, degree, date));
                 //注意！！  dispachで渡すメソッドの引数の順番は、actionsでのメソッドの引数の値と同じ順番にすること logのプログラムも読み込んでしまうのでそこは気をつけていくこと
-                // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
-            //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
-            //     date: "2019年6月15日(土)"
-            //     degree: ""
-            //     id: "0.fl5kq7vusx"
-            //     text: "ggrgew↵"
-            //     type: "ADD"
-            //     __proto__: Object
+                    // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
+                    //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
+                    //     date: "2019年6月15日(土)"
+                    //     degree: ""
+                    //     id: "0.fl5kq7vusx"
+                    //     text: "ggrgew↵"
+                    //     type: "ADD"
+                    //     __proto__: Object
             }
-            console.log('component(MenuCreater):stateをリセットします');
-            // delete this.state.val;
+            console.log('component(MenuCreater):stateをリセットします'); //ついでにisDegreeも反転させておく
               this.setState({
                  val: '',
                  degree: '',
@@ -95,9 +99,140 @@ class MenuCreater extends React.Component{
             console.log('component(MenuCreater):リセットしたあとのstateの値', this.state.val); //renderが呼ばれるは処理が終わったあとの値なのでこの時点では値が存在する
         }
     }
+     handleColor() {
+            console.log('component(MenuCreater): handleColorです');
+            // const color = $('.c-modalBtn__first');   //ナンバークリックで色を変えること　クリックされたらisDegreeを反転させる
+            // if (this.state.isDegree) {
+            //     color.addClass("c-modal__color")  
+            //     } else {
+            //     color.removeClass("c-modal__color")  
+            // } 
+    }
+    firstDegree() {
+        console.log('component(MenuCreater): 疲労度1がクリックされました');
+        this.setState({
+            degree: 'first',
+            isDegree :!this.state.isDegree
+        });
+        this.handleColor();
+    }
+    secondDegree() {
+        console.log('component(MenuCreater): 疲労度2がクリックされました');
+        this.setState({
+            degree: 'second',
+            isDegree :!this.state.isDegree
+        });
+    }
+    thirdDegree() {
+        console.log('component(MenuCreater): 疲労度3がクリックされました');
+        this.setState({
+            degree: 'third',
+            isDegree :!this.state.isDegree
+        });
+    }
+    fourthDegree() {
+        console.log('component(MenuCreater): 疲労度4がクリックされました');
+        this.setState({
+            degree: 'fourth',
+            isDegree :!this.state.isDegree
+        });
+    }
+    fifthDegree() {
+        console.log('component(MenuCreater): 疲労度5がクリックされました');
+        this.setState({
+            degree: 'fifth',
+            isDegree :!this.state.isDegree
+        });
+    }
     render() {
         console.log('component(MenuCreater): valの値render', this.state.val);
         console.log('component(MenuCreater): degreeの値render', this.state.degree);
+        console.log('component(MenuCreater): 疲労度(render)は' + this.state.degree + 'です');
+        console.log('component(MenuCreater): isDegreeの値render', this.state.isDegree);
+
+        const colorFirst = $('.c-modalBtn__first');   //ナンバークリックで色を変えること　クリックされたらisDegreeを反転させる
+        const colorSecond = $('.c-modalBtn__second');
+        const colorThird = $('.c-modalBtn__third');  
+        const colorFourth = $('.c-modalBtn__fourth');   
+        const colorFifth = $('.c-modalBtn__fifth');
+        
+        if (this.state.isDegree === true) {
+            switch (this.state.degree) {
+                case 'first':
+                    colorFirst.addClass("c-modal__colorFirst")
+                    break;
+                case 'second':
+                    colorSecond.addClass("c-modal__colorSecond")
+                    break;
+                case 'third':
+                    colorThird.addClass("c-modal__colorThird")
+                    break;
+                case 'fourth':
+                    colorFourth.addClass("c-modal__colorFourth")
+                    break;
+                case 'fifth':
+                    colorFifth.addClass("c-modal__colorFifth")
+                    break;
+                default:
+            }   
+        }
+     
+        if (this.state.isDegree === false) {  //もしisDegreeがfalseだったら、
+            colorFirst.removeClass("c-modal__colorFirst")
+            colorSecond.removeClass("c-modal__colorSecond")
+            colorThird.removeClass("c-modal__colorThird")
+            colorFourth.removeClass("c-modal__colorFourth")
+            colorFifth.removeClass("c-modal__colorFifth") 
+            // switch (this.state.degree) {
+            //     case 'first':
+            //         colorFirst.removeClass("c-modal__colorFirst")
+            //         break;
+            //     case 'second':
+            //         colorSecond.removeClass("c-modal__colorSecond")
+            //         break;
+            //     case 'third':
+            //         colorThird.removeClass("c-modal__colorThird")   
+            //         break;
+            //     case 'fourth':
+            //         colorFourth.removeClass("c-modal__colorFourth") 
+            //         break;
+            //     case 'fifth':
+            //         colorFifth.removeClass("c-modal__colorFifth")  
+            //         break;
+            // }
+        }
+
+        //if文で書いた場合
+            // if (this.state.degree === 'first' && this.state.isDegree === true) {
+            //         colorFirst.addClass("c-modal__colorFirst")  
+            //         } else {
+            //         colorFirst.removeClass("c-modal__colorFirst")  
+            // } 
+        
+            // if (this.state.degree === 'second' && this.state.isDegree === true) {
+            //         colorSecond.addClass("c-modal__colorSecond")  
+            //         } else {
+            //         colorSecond.removeClass("c-modal__colorSecond")  
+            // }
+        
+            // if (this.state.degree === 'third' && this.state.isDegree === true) {
+            //         colorThird.addClass("c-modal__colorThird")  
+            //         } else {
+            //         colorThird.removeClass("c-modal__colorThird")  
+            // }
+        
+            // if (this.state.degree === 'fourth' && this.state.isDegree === true) {
+            //         colorFourth.addClass("c-modal__colorFourth")  
+            //         } else {
+            //         colorFourth.removeClass("c-modal__colorFourth")  
+            // }
+            
+            // if (this.state.degree === 'fifth' && this.state.isDegree === true) {
+            //         colorFifth.addClass("c-modal__colorFifth")  
+            //         } else {
+            //         colorFifth.removeClass("c-modal__colorFifth")  
+            // }
+
         return (
           <div>
             <section className="p-createMenu" id="js-createMenu">
@@ -109,12 +244,12 @@ class MenuCreater extends React.Component{
 
              <section className="p-modalWindow" id="js-modal" onClick={this.showModal}>
                 <h2>今日の疲労度は...</h2>
-                    <div className="c-modalHead">
-                    <h2><span className="c-modal__btn c-modalHead__number" onClick={this.firstDegree}>1</span></h2>
-                    <h2><span className="c-modal__btn c-modalHead__number" >2</span></h2>
-                    <h2><span className="c-modal__btn c-modalHead__number" >3</span></h2>
-                    <h2><span className="c-modal__btn c-modalHead__number" >4</span></h2>
-                    <h2><span className="c-modal__btn c-modalHead__number" >5</span></h2>
+                <div className="c-modalHead">
+                    <h2><span id="js-modalBtn"  className="c-modalHead__btn c-modalBtn__first c-modalHead__first" onClick={this.firstDegree}>1</span ></h2>
+                    <h2><span id="js-modalBtn"  className="c-modalHead__btn c-modalBtn__second" onClick={this.secondDegree} >2</span ></h2>
+                    <h2><span id="js-modalBtn"  className="c-modalHead__btn c-modalBtn__third"  onClick={this.thirdDegree} >3</span ></h2>
+                    <h2><span id="js-modalBtn"  className="c-modalHead__btn c-modalBtn__fourth" onClick={this.fourthDegree} >4</span ></h2>
+                    <h2><span id="js-modalBtn"  className="c-modalHead__btn c-modalBtn__fifth"  onClick={this.fifthDegree} >5</span ></h2>
                 </div>
                 <div className="c-modalBody">
                     <h2>やりたいメニューがあれば追加できます。</h2>

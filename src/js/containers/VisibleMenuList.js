@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import {  updateMenu, deleteMenu, toggleDone } from '../actions'
 import MenuList from '../components/MenuList';
+import MenuCreater from '../components/MenuCreater';
 
 //Reduxのcontainerは、だいたい決まった形になる
 
@@ -35,7 +36,7 @@ const mapDispachToProps = dispatch => {
         },
         onClickToggleDone: id => {
             dispatch(toggleDone(id));
-        },
+        }
     }
 };
 
@@ -46,4 +47,4 @@ console.log('containers: mapDispachToPropの値', mapDispachToProps);
 //containerで第２引数で渡したいコンポーネント
 　//第１引数のでは、state,action
 　//stateをそのまま第２引数のコンポーネントで受け取る場合は、第１引数ではstate => state　という書き方　
-export default connect(mapStateToProps, mapDispachToProps)(MenuList) //menuListに渡すもの
+export default connect(mapStateToProps, mapDispachToProps)(MenuList, MenuCreater) //menuListに渡すもの
