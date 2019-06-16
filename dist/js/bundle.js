@@ -28995,6 +28995,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 //MenuListでコールバックさせるためのメソッドをマッピングする
 var mapDispachToProps = function mapDispachToProps(dispatch) {
+
     return {
         onEnterUpdateMenu: function onEnterUpdateMenu(id, text) {
             dispatch((0, _actions.updateMenu)(id, text));
@@ -29005,7 +29006,11 @@ var mapDispachToProps = function mapDispachToProps(dispatch) {
     };
 };
 
-//
+console.log('containers: mapDispachToPropの値', mapDispachToProps);
+
+//containerで第２引数で渡したいコンポーネント
+//第１引数のでは、state,action
+//stateをそのまま第２引数のコンポーネントで受け取る場合は、第１引数ではstate => state　という書き方　
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispachToProps)(_MenuList2.default); //menuListに渡すもの
 
 /***/ }),
@@ -29061,9 +29066,11 @@ var MenuList = function (_React$Component) {
     _createClass(MenuList, [{
         key: 'render',
         value: function render() {
+            //propsで受け渡しているもの
             var _props = this.props,
                 menus = _props.menus,
-                _onEnterUpdateMenu = _props.onEnterUpdateMenu;
+                _onEnterUpdateMenu = _props.onEnterUpdateMenu,
+                _onClickRemove = _props.onClickRemove;
 
             console.log('親component: この時点でのprops', this.props); //ここでcontainerからpropが渡っていて、指定できているか確認すること
             console.log('親component: menusとは', this.props.menus);
@@ -29077,19 +29084,9 @@ var MenuList = function (_React$Component) {
                     onEnterUpdateMenu: function onEnterUpdateMenu(text) {
                         return _onEnterUpdateMenu(menus[i].id, text);
                     },
-                    onClickRemove: function (_onClickRemove) {
-                        function onClickRemove() {
-                            return _onClickRemove.apply(this, arguments);
-                        }
-
-                        onClickRemove.toString = function () {
-                            return _onClickRemove.toString();
-                        };
-
-                        return onClickRemove;
-                    }(function () {
-                        return onClickRemove(menus[i].id);
-                    })
+                    onClickRemove: function onClickRemove() {
+                        return _onClickRemove(menus[i].id);
+                    }
                 })));
             };
 
@@ -29109,6 +29106,8 @@ var MenuList = function (_React$Component) {
 }(_react2.default.Component);
 
 //propsのtype指定
+//propsはコンポーネント作成時に値を指定することでコンポーネントで表示させたいデータを指定できます。
+//React.jsでコンポーネントを定義する時に、PropTypesを指定することでpropsにおける引数の入力チェックを行えます。
 
 
 MenuList.propTypes = {
@@ -29242,6 +29241,12 @@ var Menu = function (_React$Component) {
       //done fa-check-circleをクリックしたらカラーをかえる　どこのp-task(全体)
       //delete fa-times-circleをクリックしたら非表示に  どこの　　p-task(全体)
       //edit   c-menu__body をクリックしたら　編集モードに 編集用のhtmkをshow()する
+
+      //propsで受け取っているもの
+      //注意！ ここでこのコンポーネントにpropとして指定しないとエラーになる
+      var onClickRemove = this.props.onClickRemove;
+
+      console.log('子component(Menu): Menuコンポーネントで指定したthis.propsの中身', this.props);
 
       var textarea = this.state.editMode ? _react2.default.createElement('textarea', { className: 'editText', value: this.state.text, type: 'text',
         onChange: this.handleChangeText, onKeyUp: this.handleKeyUpClose }) : _react2.default.createElement(
@@ -29450,7 +29455,6 @@ function menu() {
     var action = arguments[1];
 
     console.log('reducers: reducersです');
-    console.log('reducers: reducersのreducer名 ', menu);
     switch (action.type) {
         case 'ADD':
             return {

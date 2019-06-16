@@ -16,7 +16,8 @@ class MenuList extends React.Component{
         super(props);
     }
     render() {
-        const { menus, onEnterUpdateMenu } = this.props;
+        //propsで受け渡しているもの
+        const { menus, onEnterUpdateMenu ,  onClickRemove } = this.props;
         console.log('親component: この時点でのprops', this.props);  //ここでcontainerからpropが渡っていて、指定できているか確認すること
         console.log('親component: menusとは', this.props.menus);
         
@@ -41,6 +42,8 @@ class MenuList extends React.Component{
 
 
 //propsのtype指定
+ //propsはコンポーネント作成時に値を指定することでコンポーネントで表示させたいデータを指定できます。
+ //React.jsでコンポーネントを定義する時に、PropTypesを指定することでpropsにおける引数の入力チェックを行えます。
 MenuList.propTypes = {
     menus: PropTypes.arrayOf(
         PropTypes.shape({

@@ -26,7 +26,6 @@ console.log('reducers: 初期値', initialState); //最初だけ読みとこま�
 // reducer名がそのままstateの名前になる  (このコンポーネントのstateの情報ということ)
 export default function menu(state = initialState, action) {
     console.log('reducers: reducersです');
-    console.log('reducers: reducersのreducer名 ', menu);
     switch (action.type) {
         case 'ADD':
             return {

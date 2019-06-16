@@ -75,6 +75,11 @@ class Menu extends React.Component{
          //done fa-check-circleをクリックしたらカラーをかえる　どこのp-task(全体)
          //delete fa-times-circleをクリックしたら非表示に  どこの　　p-task(全体)
     　　　//edit   c-menu__body をクリックしたら　編集モードに 編集用のhtmkをshow()する
+    
+    //propsで受け取っているもの
+     //注意！ ここでこのコンポーネントにpropとして指定しないとエラーになる
+    const { onClickRemove } = this.props;
+    console.log('子component(Menu): Menuコンポーネントで指定したthis.propsの中身', this.props);
 
     const textarea = (this.state.editMode) ?
       <textarea className="editText" value={this.state.text} type="text"

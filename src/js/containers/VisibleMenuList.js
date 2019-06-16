@@ -25,6 +25,7 @@ const mapStateToProps = state => {
 
 //MenuListでコールバックさせるためのメソッドをマッピングする
 const mapDispachToProps = dispatch => {
+
     return {
         onEnterUpdateMenu: (id, text) => {
             dispatch(updateMenu(id, text));
@@ -35,6 +36,11 @@ const mapDispachToProps = dispatch => {
     }
 };
 
+console.log('containers: mapDispachToPropの値', mapDispachToProps);
 
-//
+
+
+//containerで第２引数で渡したいコンポーネント
+　//第１引数のでは、state,action
+　//stateをそのまま第２引数のコンポーネントで受け取る場合は、第１引数ではstate => state　という書き方　
 export default connect(mapStateToProps, mapDispachToProps)(MenuList) //menuListに渡すもの
