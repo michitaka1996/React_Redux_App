@@ -24,8 +24,14 @@ class Menu extends React.Component{
       this.handleChangeText = this.handleChangeText.bind(this);
       this.handleKeyUpClose = this.handleKeyUpClose.bind(this);
       this.handleShowEdit = this.handleShowEdit.bind(this);  //stateのデータを変更して完結させることができるのでthisバインド
-
+      this.handleCreateText = this.handleCreateText.bind(this);
     }
+  
+
+
+
+
+
   handleChangeText(e) {
    console.log('子component(Menu)集完了しました！stateを更新します');
     this.setState({
@@ -49,11 +55,25 @@ class Menu extends React.Component{
       editMode: true
     });
   }
+  handleCreateText() {
+    console.log('子component(Menu): MenuCreaterから送られてきたdegreeの値を元に練習メニュー(text)を作成します');
+    const menuContent = 'おいおいおいおいおいおいおいおいおおおおおおおいおおおおおおおいおいお';
+    this.setState({
+      text: menuContent
+    });
+  }
+
+
+
+
+
 
 
   render() {
     console.log('子component(Menu): textとは', this.state.text);
     console.log('子component(Menu): editModeとは', this.state.editMode);
+    console.log('子component(Menu): propsのdegree', this.props.degree);  //MeunListからpropsが渡っていることがわかる
+    
       //クラスも動的に変更させること
     　　//クラスがこのままだとモック通り
     　　　//どこのスタイルを変えて行きたいか、->
@@ -66,9 +86,31 @@ class Menu extends React.Component{
     const { onClickRemove, onClickToggleDone } = this.props;
     console.log('子component(Menu): Menuコンポーネントで指定したthis.propsの中身', this.props);
 
+    
+
+    //================================
+    // メニュー内容
+    //================================
+    // if (this.props.degree === 'first') {
+    //   this.handleCreateText();
+    // }
+    // console.log('子component(Menu): 疲労度により更新したstate.text', this.state.text);
+    
+
+
+    
+
+
+
+    //================================
+    // メニュー表示エリア
+    //================================
     const textarea = (this.state.editMode) ?
+      //editModeがtrue　編集モード
       <textarea className="c-menu__editText" value={this.state.text} type="text"
-                onChange={this.handleChangeText} onKeyUp={this.handleKeyUpClose}/> :
+                onChange={this.handleChangeText} onKeyUp={this.handleKeyUpClose} /> :
+                
+      //editModeがfalse
       <div className="c-menu__body">
           {/* ここに指定したメニューを表示させる */}
           <ul>
@@ -76,6 +118,14 @@ class Menu extends React.Component{
           </ul>
       </div>;
     
+
+
+    
+
+
+
+
+
     return (
          <section className="p-task">
                 <div className="c-menu__check" onClick={onClickToggleDone}>
@@ -96,6 +146,11 @@ class Menu extends React.Component{
     }
 }
 
+
+
+
+
+
 //このコンポーネント内で使う、各プロパティやメソッドは、ここpropTypesで制限する必要がある
   //MenuはMenuList、containerからの受け渡しがあるので、Menuのstateで使うthis.propsのtextだけでなく、
   //id、idDone　も必要である
@@ -103,9 +158,14 @@ Menu.propTypes = {
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   isDone: PropTypes.bool.isRequired,
+  degree: PropTypes.string.isRequired,
   onEnterUpdateMenu: PropTypes.func.isRequired,
   onClickRemove: PropTypes.func.isRequired,
   onClickToggleDone: PropTypes.func.isRequired,
 };
+
+
+
+
 
 export default Menu;

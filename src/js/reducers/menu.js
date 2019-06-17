@@ -11,8 +11,9 @@ const initialState = {
     menus: [{
         id: 'XXX',
         text: 'gegeqwgregqgegrergqs',
+        degree: 'AAA',
         isDone: false,
-        date: 'YYY',
+        date: 'YYY'
     }]
 };
 console.log('reducers: 初期値', initialState); //最初だけ読みとこまれる
@@ -40,6 +41,7 @@ export default function menu(state = initialState, action) {
                         id: action.id,
                         isDone: false,
                         text: action.text,
+                        degree: action.degree,
                         date: action.date
                     }
                 ]

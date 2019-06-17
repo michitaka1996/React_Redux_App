@@ -31,9 +31,10 @@ class MenuCreater extends React.Component{
         this.thirdDegree = this.thirdDegree.bind(this);
         this.fourthDegree = this.fourthDegree.bind(this);
         this.fifthDegree = this.fifthDegree.bind(this);
-        
-
     }
+
+
+
     createHashId() {
         console.log('component(MenuCreater): 一意のIDを作ります');
         return Math.random().toString(36).slice(-16);
@@ -50,7 +51,7 @@ class MenuCreater extends React.Component{
             val: e.target.value
         });
     }
-    handleKeyUp(e) { //テキスト確定
+    handleKeyUp(e) { //テキストを確定させる。シフト+enterで確定させたとき
         if (e.keyCode === 13 && e.shiftKey === true) {
             console.log('component(MenuCreater): モーダルを非表示にします');
             $('#js-modal').hide();
@@ -68,19 +69,22 @@ class MenuCreater extends React.Component{
             console.log('component(MenuCreater): 今日のdate', date);
 
 
-            if (val && degree) {
+            if (val && degree) {  //テキスト入力と疲労度のボタンがあった場合
                 console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
                 console.log('component(MenuCreater):actionに渡す値(val)',val);
                 console.log('component(MenuCreater):actionに渡す値(degree)',degree);
-                console.log('component(MenuCreater):actionに渡す値(date)',date);
+                console.log('component(MenuCreater):actionに渡す値(date)', date);
                 this.props.dispatch(addMenu(this.createHashId(), val, degree, date));  //propsでdispachを受け取っている  connect(自分自身)
-
-            } else if (val && !degree ) {
+                console.log('component(MenuCreater): dispachで値を渡しました');
+    
+                
+            } else if (val && degree === '' ) { //テキスト入力のみがあった場合
                 console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
                 console.log('component(MenuCreater):actionに渡す値(val)',val);
                 console.log('component(MenuCreater):actionに渡す値(date)', date); //ここでのdateは読み込まれている
                 console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
                 this.props.dispatch(addMenu(this.createHashId(), val, degree, date));
+                console.log('component(MenuCreater): dispachで値を渡しました');  
                 //注意！！  dispachで渡すメソッドの引数の順番は、actionsでのメソッドの引数の値と同じ順番にすること logのプログラムも読み込んでしまうのでそこは気をつけていくこと
                     // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
                     //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
@@ -90,7 +94,15 @@ class MenuCreater extends React.Component{
                     //     text: "ggrgew↵"
                     //     type: "ADD"
                     //     __proto__: Object
+            } else if (empty(val) && degree) {
+                console.log('component(MenuCreater): dateとdegreeをactionsへ渡します。dispachでaddMenuメソッドを呼びます');
+                console.log('component(MenuCreater):actionに渡す値(date)', date); 
+                console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
+                this.props.dispatch(addMenu(this.createHashId(), val, degree, date)); 
+            } else {
+                console.log('component(MenuCreater): dateをactionsへ渡します。dispachでaddMenuメソッドを呼びます'); 
             }
+
             console.log('component(MenuCreater):stateをリセットします'); //ついでにisDegreeも反転させておく
               this.setState({
                  val: '',
@@ -100,13 +112,7 @@ class MenuCreater extends React.Component{
         }
     }
      handleColor() {
-            console.log('component(MenuCreater): handleColorです');
-            // const color = $('.c-modalBtn__first');   //ナンバークリックで色を変えること　クリックされたらisDegreeを反転させる
-            // if (this.state.isDegree) {
-            //     color.addClass("c-modal__color")  
-            //     } else {
-            //     color.removeClass("c-modal__color")  
-            // } 
+            console.log('component(MenuCreater): handleColorです'); //あとで消すこと
     }
     firstDegree() {
         console.log('component(MenuCreater): 疲労度1がクリックされました');
@@ -144,6 +150,13 @@ class MenuCreater extends React.Component{
             isDegree :!this.state.isDegree
         });
     }
+
+
+
+
+    
+
+    
     render() {
         console.log('component(MenuCreater): valの値render', this.state.val);
         console.log('component(MenuCreater): degreeの値render', this.state.degree);
@@ -156,7 +169,15 @@ class MenuCreater extends React.Component{
         const colorFourth = $('.c-modalBtn__fourth');   
         const colorFifth = $('.c-modalBtn__fifth');
         
-        if (this.state.isDegree === true) {
+       //ボタン1~5が押された時の処理
+        //やりたいこと：1ボタンが押されたら、addClassして色を変える
+        　//さらに、stateのdegreeでfirst~fifthの値を付与する
+        　//それをpropsとして、actions~storeへ流しpropsを更新させる
+        　//もしdegreeがfirstだったら、決められたメニューをMenuのbodyに流し込む
+           //ということはMenuCreaterからMenuへprops(degree)を渡すこと
+        
+
+        if (this.state.isDegree === true) {  //ボタンが押されたら色を変える
             switch (this.state.degree) {
                 case 'first':
                     colorFirst.addClass("c-modal__colorFirst")
@@ -177,29 +198,12 @@ class MenuCreater extends React.Component{
             }   
         }
      
-        if (this.state.isDegree === false) {  //もしisDegreeがfalseだったら、
+        if (this.state.isDegree === false) {  //他のボタンが押されたらすでに色が付いているものは色を消す(元に戻す)
             colorFirst.removeClass("c-modal__colorFirst")
             colorSecond.removeClass("c-modal__colorSecond")
             colorThird.removeClass("c-modal__colorThird")
             colorFourth.removeClass("c-modal__colorFourth")
             colorFifth.removeClass("c-modal__colorFifth") 
-            // switch (this.state.degree) {
-            //     case 'first':
-            //         colorFirst.removeClass("c-modal__colorFirst")
-            //         break;
-            //     case 'second':
-            //         colorSecond.removeClass("c-modal__colorSecond")
-            //         break;
-            //     case 'third':
-            //         colorThird.removeClass("c-modal__colorThird")   
-            //         break;
-            //     case 'fourth':
-            //         colorFourth.removeClass("c-modal__colorFourth") 
-            //         break;
-            //     case 'fifth':
-            //         colorFifth.removeClass("c-modal__colorFifth")  
-            //         break;
-            // }
         }
 
         //if文で書いた場合
@@ -232,6 +236,10 @@ class MenuCreater extends React.Component{
             //         } else {
             //         colorFifth.removeClass("c-modal__colorFifth")  
             // }
+        
+
+
+
 
         return (
           <div>
@@ -263,9 +271,17 @@ class MenuCreater extends React.Component{
 }
 
 
+
+
+
+
+
+
 MenuCreater.propTypes = {
     dispatch: PropTypes.func.isRequired
 };
+
+
 
 
 

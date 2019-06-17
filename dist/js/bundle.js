@@ -1625,7 +1625,6 @@ var MenuCreater = function (_React$Component) {
         _this.thirdDegree = _this.thirdDegree.bind(_this);
         _this.fourthDegree = _this.fourthDegree.bind(_this);
         _this.fifthDegree = _this.fifthDegree.bind(_this);
-
         return _this;
     }
 
@@ -1654,7 +1653,7 @@ var MenuCreater = function (_React$Component) {
     }, {
         key: 'handleKeyUp',
         value: function handleKeyUp(e) {
-            //テキスト確定
+            //テキストを確定させる。シフト+enterで確定させたとき
             if (e.keyCode === 13 && e.shiftKey === true) {
                 console.log('component(MenuCreater): モーダルを非表示にします');
                 $('#js-modal').hide();
@@ -1672,17 +1671,21 @@ var MenuCreater = function (_React$Component) {
                 console.log('component(MenuCreater): 今日のdate', date);
 
                 if (val && degree) {
+                    //テキスト入力と疲労度のボタンがあった場合
                     console.log('component(MenuCreater): valとdegreeとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
                     console.log('component(MenuCreater):actionに渡す値(val)', val);
                     console.log('component(MenuCreater):actionに渡す値(degree)', degree);
                     console.log('component(MenuCreater):actionに渡す値(date)', date);
                     this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date)); //propsでdispachを受け取っている  connect(自分自身)
-                } else if (val && !degree) {
+                    console.log('component(MenuCreater): dispachで値を渡しました');
+                } else if (val && degree === '') {
+                    //テキスト入力のみがあった場合
                     console.log('component(MenuCreater): valとdateをactionsに渡します。dispachでaddMenuメソッドを呼びます');
                     console.log('component(MenuCreater):actionに渡す値(val)', val);
                     console.log('component(MenuCreater):actionに渡す値(date)', date); //ここでのdateは読み込まれている
                     console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
                     this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date));
+                    console.log('component(MenuCreater): dispachで値を渡しました');
                     //注意！！  dispachで渡すメソッドの引数の順番は、actionsでのメソッドの引数の値と同じ順番にすること logのプログラムも読み込んでしまうのでそこは気をつけていくこと
                     // console.log('component(MenuCreater): このprops', this.props.dispatch(addMenu(this.createHashId(), val, degree,  date))); 
                     //    {type: "ADD", id: "0.fl5kq7vusx", text: "ggrgew↵", degree: "", date: "2019年6月15日(土)"}
@@ -1692,7 +1695,15 @@ var MenuCreater = function (_React$Component) {
                     //     text: "ggrgew↵"
                     //     type: "ADD"
                     //     __proto__: Object
+                } else if (empty(val) && degree) {
+                    console.log('component(MenuCreater): dateとdegreeをactionsへ渡します。dispachでaddMenuメソッドを呼びます');
+                    console.log('component(MenuCreater):actionに渡す値(date)', date);
+                    console.log('component(MenuCreater):degreeの値(degree)', this.state.degree);
+                    this.props.dispatch((0, _index.addMenu)(this.createHashId(), val, degree, date));
+                } else {
+                    console.log('component(MenuCreater): dateをactionsへ渡します。dispachでaddMenuメソッドを呼びます');
                 }
+
                 console.log('component(MenuCreater):stateをリセットします'); //ついでにisDegreeも反転させておく
                 this.setState({
                     val: '',
@@ -1704,13 +1715,7 @@ var MenuCreater = function (_React$Component) {
     }, {
         key: 'handleColor',
         value: function handleColor() {
-            console.log('component(MenuCreater): handleColorです');
-            // const color = $('.c-modalBtn__first');   //ナンバークリックで色を変えること　クリックされたらisDegreeを反転させる
-            // if (this.state.isDegree) {
-            //     color.addClass("c-modal__color")  
-            //     } else {
-            //     color.removeClass("c-modal__color")  
-            // } 
+            console.log('component(MenuCreater): handleColorです'); //あとで消すこと
         }
     }, {
         key: 'firstDegree',
@@ -1772,7 +1777,16 @@ var MenuCreater = function (_React$Component) {
             var colorFourth = $('.c-modalBtn__fourth');
             var colorFifth = $('.c-modalBtn__fifth');
 
+            //ボタン1~5が押された時の処理
+            //やりたいこと：1ボタンが押されたら、addClassして色を変える
+            //さらに、stateのdegreeでfirst~fifthの値を付与する
+            //それをpropsとして、actions~storeへ流しpropsを更新させる
+            //もしdegreeがfirstだったら、決められたメニューをMenuのbodyに流し込む
+            //ということはMenuCreaterからMenuへprops(degree)を渡すこと
+
+
             if (this.state.isDegree === true) {
+                //ボタンが押されたら色を変える
                 switch (this.state.degree) {
                     case 'first':
                         colorFirst.addClass("c-modal__colorFirst");
@@ -1794,29 +1808,12 @@ var MenuCreater = function (_React$Component) {
             }
 
             if (this.state.isDegree === false) {
-                //もしisDegreeがfalseだったら、
+                //他のボタンが押されたらすでに色が付いているものは色を消す(元に戻す)
                 colorFirst.removeClass("c-modal__colorFirst");
                 colorSecond.removeClass("c-modal__colorSecond");
                 colorThird.removeClass("c-modal__colorThird");
                 colorFourth.removeClass("c-modal__colorFourth");
                 colorFifth.removeClass("c-modal__colorFifth");
-                // switch (this.state.degree) {
-                //     case 'first':
-                //         colorFirst.removeClass("c-modal__colorFirst")
-                //         break;
-                //     case 'second':
-                //         colorSecond.removeClass("c-modal__colorSecond")
-                //         break;
-                //     case 'third':
-                //         colorThird.removeClass("c-modal__colorThird")   
-                //         break;
-                //     case 'fourth':
-                //         colorFourth.removeClass("c-modal__colorFourth") 
-                //         break;
-                //     case 'fifth':
-                //         colorFifth.removeClass("c-modal__colorFifth")  
-                //         break;
-                // }
             }
 
             //if文で書いた場合
@@ -1849,6 +1846,7 @@ var MenuCreater = function (_React$Component) {
             //         } else {
             //         colorFifth.removeClass("c-modal__colorFifth")  
             // }
+
 
             return _react2.default.createElement(
                 'div',
@@ -29211,22 +29209,27 @@ var MenuList = function (_React$Component) {
     _createClass(MenuList, [{
         key: 'render',
         value: function render() {
-            //propsで受け渡しているもの
             var _props = this.props,
                 menus = _props.menus,
                 _onEnterUpdateMenu = _props.onEnterUpdateMenu,
                 _onClickRemove = _props.onClickRemove,
-                _onClickToggleDone = _props.onClickToggleDone;
+                _onClickToggleDone = _props.onClickToggleDone; //propsで受け渡しているものを指定
 
             console.log('親component: この時点でのprops', this.props); //ここでcontainerからpropが渡っていて、指定できているか確認すること
-            console.log('親component: menusとは', this.props.menus);
 
             var tasks = [];
 
             var _loop = function _loop(i) {
                 console.log('親component:menus[i]', menus[i]); //この２つの違いに注意
-                console.log('親component:menus', menus);
-                tasks.push(_react2.default.createElement(_Menu2.default, _extends({ key: menus[i].id }, menus[i], {
+                console.log('親component:menus(reducersにてデータを加工した後のやつ)', menus);
+                //結果
+                //date: "2019年6月17日(月)"
+                // degree: "first"
+                // id: "0.nlv0tu07se"
+                // isDone: false
+                // text: "eggre;e↵↵"   
+
+                tasks.push(_react2.default.createElement(_Menu2.default, _extends({ key: menus[i].id }, menus[i], { //子コンポーネントへpushすることでpropとしてreducersのmenus、dispach()した各propsの値を渡している
                     onEnterUpdateMenu: function onEnterUpdateMenu(text) {
                         return _onEnterUpdateMenu(menus[i].id, text);
                     },
@@ -29242,7 +29245,32 @@ var MenuList = function (_React$Component) {
             for (var i in menus) {
                 _loop(i);
             }
-            console.log('親component: tasks(配列にpropsをpushしたやつ)', tasks);
+            console.log('親component: tasks(配列にpropsをpushした後のやつ)', tasks); //reducersのコレクションデータにここでpropsを追加した後のもの
+            //結果
+            //$$typeof: Symbol(react.element)
+            // key: "0.4tasdu5050d"
+            // props:
+            // date: "2019年6月17日(月)"
+            // degree: "first"
+            // id: "0.4tasdu5050d"
+            // isDone: false
+            // onClickRemove: ƒ onClickRemove()   //propsで指定したコールバックメソッドも反映されている
+            // onClickToggleDone: ƒ onClickToggleDone()
+            // onEnterUpdateMenu: ƒ onEnterUpdateMenu(text)
+
+
+            //================================
+            // degreeの値によって、
+            // Menuコンポーネントのstate.textを動的に変更 
+            //================================
+            var lastMenu = menus.pop(); //末尾の配列の要素を取得
+            console.log('親component: 最後のMenu', lastMenu);
+            console.log('親component: 最後のMenuのdegree', lastMenu.degree); //配列の取り出し方に注意
+
+            if (lastMenu.degree === 'first') {
+                console.log('親component:　疲労度は1なのでメニューを作成します');
+            }
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -29263,6 +29291,7 @@ MenuList.propTypes = {
     menus: _propTypes2.default.arrayOf(_propTypes2.default.shape({
         id: _propTypes2.default.string.isRequired,
         isDone: _propTypes2.default.bool.isRequired,
+        degree: _propTypes2.default.string.isRequired,
         text: _propTypes2.default.string.isRequired
     }).isRequired).isRequired,
     onEnterUpdateMenu: _propTypes2.default.func.isRequired,
@@ -29330,7 +29359,7 @@ var Menu = function (_React$Component) {
     _this.handleChangeText = _this.handleChangeText.bind(_this);
     _this.handleKeyUpClose = _this.handleKeyUpClose.bind(_this);
     _this.handleShowEdit = _this.handleShowEdit.bind(_this); //stateのデータを変更して完結させることができるのでthisバインド
-
+    _this.handleCreateText = _this.handleCreateText.bind(_this);
     return _this;
   }
 
@@ -29364,10 +29393,21 @@ var Menu = function (_React$Component) {
       });
     }
   }, {
+    key: 'handleCreateText',
+    value: function handleCreateText() {
+      console.log('子component(Menu): MenuCreaterから送られてきたdegreeの値を元に練習メニュー(text)を作成します');
+      var menuContent = 'おいおいおいおいおいおいおいおいおおおおおおおいおおおおおおおいおいお';
+      this.setState({
+        text: menuContent
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       console.log('子component(Menu): textとは', this.state.text);
       console.log('子component(Menu): editModeとは', this.state.editMode);
+      console.log('子component(Menu): propsのdegree', this.props.degree); //MeunListからpropsが渡っていることがわかる
+
       //クラスも動的に変更させること
       //クラスがこのままだとモック通り
       //どこのスタイルを変えて行きたいか、->
@@ -29383,8 +29423,25 @@ var Menu = function (_React$Component) {
 
       console.log('子component(Menu): Menuコンポーネントで指定したthis.propsの中身', this.props);
 
-      var textarea = this.state.editMode ? _react2.default.createElement('textarea', { className: 'c-menu__editText', value: this.state.text, type: 'text',
-        onChange: this.handleChangeText, onKeyUp: this.handleKeyUpClose }) : _react2.default.createElement(
+      //================================
+      // メニュー内容
+      //================================
+      // if (this.props.degree === 'first') {
+      //   this.handleCreateText();
+      // }
+      // console.log('子component(Menu): 疲労度により更新したstate.text', this.state.text);
+
+
+      //================================
+      // メニュー表示エリア
+      //================================
+      var textarea = this.state.editMode ?
+      //editModeがtrue　編集モード
+      _react2.default.createElement('textarea', { className: 'c-menu__editText', value: this.state.text, type: 'text',
+        onChange: this.handleChangeText, onKeyUp: this.handleKeyUpClose }) :
+
+      //editModeがfalse
+      _react2.default.createElement(
         'div',
         { className: 'c-menu__body' },
         _react2.default.createElement(
@@ -29447,6 +29504,7 @@ Menu.propTypes = {
   id: _propTypes2.default.string.isRequired,
   text: _propTypes2.default.string.isRequired,
   isDone: _propTypes2.default.bool.isRequired,
+  degree: _propTypes2.default.string.isRequired,
   onEnterUpdateMenu: _propTypes2.default.func.isRequired,
   onClickRemove: _propTypes2.default.func.isRequired,
   onClickToggleDone: _propTypes2.default.func.isRequired
@@ -29577,6 +29635,7 @@ var initialState = {
     menus: [{
         id: 'XXX',
         text: 'gegeqwgregqgegrergqs',
+        degree: 'AAA',
         isDone: false,
         date: 'YYY'
     }]
@@ -29607,6 +29666,7 @@ function menu() {
                     id: action.id,
                     isDone: false,
                     text: action.text,
+                    degree: action.degree,
                     date: action.date
                 }])
             };
